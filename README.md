@@ -3,7 +3,7 @@
 This repository hosts the personal academic homepage of Zihao (Matthew) Wang.
 
 Live site:
-https://matt-zhwang.github.io/personal-homepage/
+https://zihaowang-kiaa.github.io/personal-homepage/
 
 ## Contents
 
