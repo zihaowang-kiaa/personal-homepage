@@ -4,7 +4,56 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Zihao Wang | Homepage</title>
+  <meta name="description" content="Zihao Wang is a Ph.D. student in astronomy at Peking University / KIAA, working on high-redshift black holes, AGNs, Little Red Dots, galaxy formation, numerical simulations, and machine learning.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://zihaowang-kiaa.github.io/personal-homepage/">
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Zihao Wang | Astronomy Ph.D. Student">
+  <meta property="og:description" content="Personal academic homepage of Zihao Wang: high-redshift black holes, AGNs, Little Red Dots, galaxy formation, publications, projects, posts, and CV.">
+  <meta property="og:url" content="https://zihaowang-kiaa.github.io/personal-homepage/">
+  <meta property="og:image" content="https://zihaowang-kiaa.github.io/personal-homepage/source%20materials/ppl.png">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="data:,">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Zihao Wang",
+      "alternateName": ["Matthew Wang", "Z. Wang"],
+      "url": "https://zihaowang-kiaa.github.io/personal-homepage/",
+      "image": "https://zihaowang-kiaa.github.io/personal-homepage/source%20materials/ppl.png",
+      "jobTitle": "Ph.D. student in astronomy",
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "Peking University"
+      },
+      "alumniOf": [
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Nanjing University"
+        },
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Massachusetts Institute of Technology"
+        }
+      ],
+      "knowsAbout": [
+        "Astronomy",
+        "High-redshift black holes",
+        "Active galactic nuclei",
+        "Little Red Dots",
+        "Galaxy formation",
+        "Numerical simulations",
+        "Machine learning for astronomy"
+      ],
+      "email": "mailto:zihaowang25@stu.pku.edu.cn",
+      "sameAs": [
+        "https://orcid.org/0009-0007-4590-6550",
+        "https://ui.adsabs.harvard.edu/public-libraries/KrWPK55_RIi-0et1K3-kDQ",
+        "https://astro.pku.edu.cn/"
+      ]
+    }
+  </script>
   <style>
     :root {
       color-scheme: dark;
@@ -186,11 +235,12 @@
 
     .hero {
       position: relative;
-      min-height: 92vh;
-      padding: 128px 36px 80px;
+      min-height: 100svh;
+      padding: 128px 36px 84px;
       display: grid;
       align-items: center;
       overflow: hidden;
+      isolation: isolate;
     }
 
     .hero::after {
@@ -218,11 +268,8 @@
     .hero-inner {
       position: relative;
       z-index: 2;
-      display: grid;
-      grid-template-columns: minmax(0, 620px) minmax(280px, 420px);
+      display: block;
       align-items: center;
-      justify-content: space-between;
-      gap: clamp(32px, 6vw, 92px);
     }
 
     .hero-copy {
@@ -300,39 +347,12 @@
       opacity: 0.42;
     }
 
-    .hero-side {
-      justify-self: end;
-      width: clamp(330px, 35vw, 520px);
-      display: grid;
-      gap: 14px;
-    }
-
-    .hero-portrait {
-      width: min(300px, 58%);
-      justify-self: end;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      background: rgba(0, 0, 0, 0.56);
-      box-shadow:
-        -14px 16px 0 rgba(216, 49, 38, 0.16),
-        0 24px 64px rgba(0, 0, 0, 0.42);
-    }
-
-    .hero-portrait img {
-      width: 100%;
-      height: auto;
-      max-height: min(42vh, 360px);
-      object-fit: contain;
-      opacity: 0.96;
-    }
-
     .home-stage {
-      position: relative;
-      min-height: clamp(270px, 34vh, 380px);
+      position: absolute;
+      inset: 0;
+      z-index: 0;
       overflow: hidden;
-      border: 1px solid var(--line);
       background: #050505;
-      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.48);
       isolation: isolate;
     }
 
@@ -343,8 +363,9 @@
       z-index: 1;
       pointer-events: none;
       background:
-        linear-gradient(90deg, rgba(0, 0, 0, 0.76), transparent 36%, rgba(0, 0, 0, 0.5)),
-        radial-gradient(circle at 68% 42%, rgba(216, 49, 38, 0.22), transparent 34%);
+        linear-gradient(90deg, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.38) 42%, rgba(0, 0, 0, 0.58)),
+        linear-gradient(0deg, rgba(0, 0, 0, 0.88), transparent 38%),
+        radial-gradient(circle at var(--spot-x, 70%) var(--spot-y, 44%), rgba(216, 49, 38, 0.18), transparent 34%);
     }
 
     .stage-video {
@@ -359,9 +380,7 @@
     }
 
     .stage-ground,
-    .stage-prop,
-    .stage-dragger,
-    .stage-ruinplay {
+    .stage-prop {
       position: absolute;
       z-index: 3;
       display: block;
@@ -374,7 +393,7 @@
       bottom: -10px;
       z-index: 2;
       width: 100%;
-      height: 30%;
+      height: 26%;
       object-fit: cover;
       opacity: 0.88;
       filter: grayscale(100%) contrast(1.12);
@@ -392,15 +411,16 @@
     .stage-prop img {
       width: 100%;
       pointer-events: none;
-      filter: grayscale(100%) contrast(1.1);
-      transition: filter 0.18s ease, transform 0.18s ease, opacity 0.18s ease;
+      filter: grayscale(100%) contrast(1.12) brightness(0.82);
+      opacity: 0.86;
+      transition: filter 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
     }
 
     .stage-prop:hover img,
     .stage-prop:focus-visible img,
     .stage-prop.is-lit img {
       filter: grayscale(0%) contrast(1.14);
-      transform: translateY(-3px);
+      transform: translateY(-8px) scale(1.04);
       opacity: 1;
     }
 
@@ -410,137 +430,51 @@
     }
 
     .stage-prop.house {
-      left: 4%;
-      bottom: 11%;
-      width: 36%;
-    }
-
-    .stage-prop.ruin {
-      right: -3%;
-      bottom: 14%;
-      width: 46%;
-    }
-
-    .stage-prop.paper {
-      left: 37%;
-      top: 14%;
-      width: 28%;
-      transform: rotate(-5deg);
+      left: clamp(28px, 5vw, 84px);
+      bottom: clamp(58px, 8vh, 92px);
+      width: clamp(118px, 12vw, 190px);
     }
 
     .stage-prop.door {
-      right: 20%;
-      top: 6%;
-      width: 16%;
+      left: 52%;
+      top: 18%;
+      width: clamp(94px, 10vw, 170px);
       transform: rotate(4deg);
     }
 
-    .stage-prop.mail {
-      left: 43%;
-      bottom: 15%;
-      width: 18%;
-      transform: rotate(7deg);
+    .stage-prop.ruin {
+      right: clamp(-70px, -3vw, -20px);
+      bottom: clamp(100px, 15vh, 170px);
+      width: clamp(280px, 34vw, 520px);
+    }
+
+    .stage-prop.cv {
+      right: clamp(120px, 18vw, 280px);
+      top: clamp(130px, 23vh, 230px);
+      width: clamp(130px, 13vw, 210px);
+      transform: rotate(-8deg);
     }
 
     .stage-label {
       position: absolute;
       left: 50%;
-      bottom: 8px;
+      bottom: -2px;
       width: max-content;
-      max-width: 150px;
-      padding: 4px 7px;
+      max-width: 180px;
+      padding: 6px 9px;
       transform: translateX(-50%);
       border: 1px solid rgba(255, 255, 255, 0.18);
       background: rgba(0, 0, 0, 0.62);
       color: var(--ink);
-      font-size: 0.68rem;
+      font-size: 0.74rem;
       font-weight: 900;
       line-height: 1.1;
       text-transform: uppercase;
     }
 
-    .stage-prop.paper .stage-label,
     .stage-prop.door .stage-label {
       bottom: auto;
       top: calc(100% + 5px);
-    }
-
-    .stage-dragger {
-      left: 44%;
-      top: 38%;
-      z-index: 8;
-      width: clamp(54px, 7vw, 92px);
-      cursor: grab;
-      touch-action: none;
-      filter: grayscale(100%) contrast(1.14) drop-shadow(0 18px 20px rgba(0, 0, 0, 0.62));
-      transition: filter 0.18s ease, opacity 0.18s ease, transform 0.18s ease;
-    }
-
-    .stage-dragger:hover,
-    .stage-dragger:focus-visible,
-    .stage-dragger.is-dragging {
-      filter: grayscale(0%) contrast(1.12) drop-shadow(0 20px 24px rgba(0, 0, 0, 0.68));
-      outline: none;
-    }
-
-    .stage-dragger.is-dragging {
-      cursor: grabbing;
-      opacity: 0.72;
-      transform: rotate(-4deg) scale(1.04);
-    }
-
-    .stage-dragger img {
-      width: 100%;
-      pointer-events: none;
-    }
-
-    .stage-ruinplay {
-      right: 8%;
-      bottom: 19%;
-      z-index: 4;
-      width: 34%;
-      aspect-ratio: 1;
-      display: none;
-      animation: stage-ruinplay 4.5s steps(1) infinite;
-      pointer-events: none;
-    }
-
-    .home-stage.is-ruined .stage-ruinplay {
-      display: block;
-    }
-
-    @keyframes stage-ruinplay {
-      0% { background: url("source materials/heart.png") center / contain no-repeat; }
-      16% { background: url("source materials/heart_broken.png") center / contain no-repeat; }
-      32% { background: url("source materials/face.png") center / contain no-repeat; }
-      48% { background: url("source materials/build_broken.png") center / contain no-repeat; }
-      64% { background: url("source materials/lover.png") center / contain no-repeat; }
-      80% { background: url("source materials/lover_broken.png") center / contain no-repeat; }
-      100% { background: url("source materials/heart.png") center / contain no-repeat; }
-    }
-
-    .stage-readout {
-      position: absolute;
-      left: 16px;
-      right: 16px;
-      bottom: 14px;
-      z-index: 9;
-      min-height: 64px;
-      padding: 10px 12px;
-      border-left: 2px solid var(--red);
-      background: rgba(0, 0, 0, 0.7);
-      color: var(--muted);
-      font-size: 0.84rem;
-      line-height: 1.38;
-      backdrop-filter: blur(8px);
-    }
-
-    .stage-readout strong {
-      display: block;
-      margin-bottom: 2px;
-      color: var(--ink);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.04rem;
     }
 
     .collage .fragment {
@@ -614,28 +548,22 @@
     .portrait-stack {
       position: sticky;
       top: 96px;
-      min-height: 360px;
+      min-height: 440px;
+      border: 1px solid var(--line);
+      background: rgba(0, 0, 0, 0.56);
+      box-shadow:
+        -16px 18px 0 rgba(216, 49, 38, 0.14),
+        0 28px 72px rgba(0, 0, 0, 0.42);
+      overflow: hidden;
     }
 
     .portrait-stack img {
-      position: absolute;
-      border: 1px solid var(--line);
-      background: #111;
-    }
-
-    .portrait-stack .main-img {
-      width: 82%;
-      right: 0;
-      top: 0;
-      filter: grayscale(100%) contrast(1.12);
-    }
-
-    .portrait-stack .small-img {
-      width: 48%;
-      left: 0;
-      bottom: 0;
-      transform: rotate(-7deg);
-      filter: grayscale(100%) contrast(1.2);
+      width: 100%;
+      height: 100%;
+      min-height: 440px;
+      object-fit: contain;
+      object-position: center;
+      background: rgba(0, 0, 0, 0.42);
     }
 
     .bio-copy {
@@ -1037,21 +965,6 @@
         top: 420px;
       }
 
-      .hero-side {
-        width: min(500px, 100%);
-        justify-self: stretch;
-      }
-
-      .hero-portrait {
-        box-shadow:
-          -12px 14px 0 rgba(216, 49, 38, 0.16),
-          0 20px 52px rgba(0, 0, 0, 0.44);
-      }
-
-      .hero-portrait img {
-        max-height: 390px;
-      }
-
       .collage .fragment {
         left: 18px;
         bottom: 96px;
@@ -1072,7 +985,7 @@
       .portrait-stack {
         position: relative;
         top: auto;
-        min-height: 280px;
+        min-height: 360px;
       }
 
       .research-grid,
@@ -1114,14 +1027,6 @@
         font-size: 2rem;
       }
 
-      .hero-side {
-        width: 100%;
-      }
-
-      .hero-portrait img {
-        max-height: 330px;
-      }
-
       .ticker {
         padding-left: 20px;
         padding-right: 20px;
@@ -1146,7 +1051,7 @@
 	      <details class="nav-projects">
 	        <summary>Research Projects</summary>
 	        <div class="nav-project-options">
-	          <a href="pages/high-redshift-black-holes-agns.html" target="_blank" rel="noopener noreferrer">
+	          <a href="pages/high-redshift-black-holes-agns.html">
 	            <small>01</small>
 	            High-redshift black holes and AGNs
 	          </a>
@@ -1161,17 +1066,33 @@
 	        </div>
 	      </details>
 	      <a href="#publications">Publications</a>
-	      <a href="pages/posts.html" target="_blank" rel="noopener noreferrer">Posts &amp; Photos</a>
-	      <a href="Zihao_2026.pdf" target="_blank" rel="noopener noreferrer">CV</a>
+	      <a href="pages/posts.html">Posts &amp; Photos</a>
+	      <a href="Zihao_2026.pdf">CV</a>
 	      <a href="#contact">Contact</a>
 	    </div>
   </nav>
 
   <main id="top">
     <section class="hero" aria-labelledby="home-title">
-      <div class="collage" aria-hidden="true">
-        <img class="eye" src="source materials/eye.gif" alt="">
-        <img class="fragment" src="source materials/heart_piece.png" alt="">
+      <div class="home-stage" id="home-stage" aria-label="Interactive homepage stage">
+        <video class="stage-video" src="source materials/vid.mp4" loop autoplay muted playsinline aria-hidden="true"></video>
+        <img class="stage-ground" src="source materials/wide.png" alt="" aria-hidden="true">
+        <a class="stage-prop house" href="#about-me" data-x="28%" data-y="70%" aria-label="Open front room">
+          <img src="source materials/judge_house.png" alt="">
+          <span class="stage-label">Front room</span>
+        </a>
+        <a class="stage-prop door" href="#projects" data-x="54%" data-y="24%" aria-label="Open research projects">
+          <img src="source materials/door_close.png" alt="">
+          <span class="stage-label">Research projects</span>
+        </a>
+        <a class="stage-prop ruin" href="pages/posts.html" data-x="78%" data-y="68%" aria-label="Open posts page">
+          <img src="source materials/ruin.png" alt="">
+          <span class="stage-label">Posts</span>
+        </a>
+        <a class="stage-prop cv" href="Zihao_2026.pdf" data-x="70%" data-y="28%" aria-label="Open CV">
+          <img src="source materials/bauhaus2.jpeg" alt="">
+          <span class="stage-label">CV</span>
+        </a>
       </div>
 
       <div class="hero-inner">
@@ -1184,52 +1105,7 @@
             supervised by <a href="https://inayoshi0328.wixsite.com/kohei-inayoshi" target="_blank" rel="noopener noreferrer">Prof. Kohei Inayoshi</a>.
             I study how the first stars, galaxies, and supermassive black holes formed in the JWST era.
           </p>
-          <div class="hero-actions" aria-label="Homepage shortcuts">
-            <a class="text-link" href="#about-me">About me</a>
-            <a class="text-link" href="#projects">Research projects</a>
-            <a class="text-link" href="#publications">Selected publications</a>
-            <a class="text-link" href="pages/posts.html" target="_blank" rel="noopener noreferrer">Posts &amp; Photos</a>
-            <a class="text-link" href="Zihao_2026.pdf" target="_blank" rel="noopener noreferrer">CV</a>
-            <a class="text-link" href="#contact">Contact</a>
-          </div>
         </div>
-        <aside class="hero-side" aria-label="Interactive homepage stage">
-          <div class="hero-portrait">
-            <img src="source materials/ppl.png" alt="Portrait of Zihao Wang">
-          </div>
-          <div class="home-stage" id="home-stage">
-            <video class="stage-video" src="source materials/vid.mp4" loop autoplay muted playsinline aria-hidden="true"></video>
-            <img class="stage-ground" src="source materials/wide.png" alt="" aria-hidden="true">
-            <a class="stage-prop house is-lit" href="#about-me" data-title="About me" data-text="The front room: background, mentors, institutions, and why I work on early black holes and galaxies." data-x="72%" data-y="36%">
-              <img src="source materials/judge_house.png" data-normal="source materials/judge_house.png" data-active="source materials/judge_house_after.png" alt="">
-              <span class="stage-label">About</span>
-            </a>
-            <a class="stage-prop ruin" href="#projects" data-title="Research projects" data-text="The working rooms: Little Red Dots, AGN accretion histories, high-redshift galaxies, and AI for astronomy." data-x="68%" data-y="58%">
-              <img src="source materials/ruin.png" data-normal="source materials/ruin.png" data-active="source materials/judge_ruin_after.png" alt="">
-              <span class="stage-label">Projects</span>
-            </a>
-            <a class="stage-prop paper" href="#publications" data-title="Publications" data-text="The reading table: selected papers, author lists, first-author work, and contributing-author work." data-x="52%" data-y="68%">
-              <img src="source materials/bias_cover.png" data-normal="source materials/bias_cover.png" data-active="source materials/BHE_cover.png" alt="">
-              <span class="stage-label">Publications</span>
-            </a>
-            <a class="stage-prop door" href="pages/posts.html" target="_blank" rel="noopener noreferrer" data-title="Posts & Photos" data-text="The garden and back rooms: cinema, music, essays, photography albums, and astronomy notes." data-x="78%" data-y="78%">
-              <img src="source materials/door_close.png" data-normal="source materials/door_close.png" data-active="source materials/door_open.png" alt="">
-              <span class="stage-label">Posts</span>
-            </a>
-            <a class="stage-prop mail" href="#contact" data-title="Contact / CV" data-text="The mailbox: email, NASA ADS, CV, and academic links." data-x="62%" data-y="30%">
-              <img src="source materials/light.png" data-normal="source materials/light.png" data-active="source materials/button.png" alt="">
-              <span class="stage-label">Contact</span>
-            </a>
-            <div class="stage-ruinplay" aria-hidden="true"></div>
-            <button class="stage-dragger" type="button" aria-label="Draggable stage figure">
-              <img src="source materials/talkwoman_drag.png" alt="">
-            </button>
-            <div class="stage-readout" id="stage-readout" aria-live="polite">
-              <strong>About me</strong>
-              The front room: background, mentors, institutions, and why I work on early black holes and galaxies.
-            </div>
-          </div>
-        </aside>
       </div>
 
       <div class="ticker" aria-hidden="true">
@@ -1247,9 +1123,8 @@
         </div>
 
         <div class="bio-grid">
-          <div class="portrait-stack" aria-hidden="true">
-            <img class="main-img" src="source materials/face.png" alt="">
-            <img class="small-img" src="source materials/talkwoman_drag.png" alt="">
+          <div class="portrait-stack">
+            <img src="source materials/ppl.png" alt="Portrait of Zihao Wang">
           </div>
           <div class="bio-copy">
             <p>
@@ -1301,7 +1176,7 @@
         </div>
 
         <div class="research-grid">
-          <a class="tile project-card" href="pages/high-redshift-black-holes-agns.html" target="_blank" rel="noopener noreferrer" aria-label="Open project: High-redshift black holes and AGNs">
+          <a class="tile project-card" href="pages/high-redshift-black-holes-agns.html" aria-label="Open project: High-redshift black holes and AGNs">
             <div class="tile-visual" aria-hidden="true"></div>
             <div class="tile-body">
               <div class="index">01</div>
@@ -1438,7 +1313,7 @@
           </article>
         </div>
         <p style="margin: 28px 0 0;">
-          <a class="text-link" href="pages/posts.html" target="_blank" rel="noopener noreferrer">Open posts and photos</a>
+          <a class="text-link" href="pages/posts.html">Open posts and photos</a>
         </p>
       </div>
     </section>
@@ -1457,9 +1332,9 @@
             resonates with you.
           </p>
           <div class="contact-links">
-            <a class="text-link" href="mailto:zihaowang25@stu.pku.edu.cn" target="_blank" rel="noopener noreferrer">PKU Email</a>
-            <a class="text-link" href="mailto:wangz314@mit.edu" target="_blank" rel="noopener noreferrer">MIT Email</a>
-            <a class="text-link" href="Zihao_2026.pdf" target="_blank" rel="noopener noreferrer">CV</a>
+            <a class="text-link" href="mailto:zihaowang25@stu.pku.edu.cn">PKU Email</a>
+            <a class="text-link" href="mailto:wangz314@mit.edu">MIT Email</a>
+            <a class="text-link" href="Zihao_2026.pdf">CV</a>
             <a class="text-link" href="https://ui.adsabs.harvard.edu/public-libraries/KrWPK55_RIi-0et1K3-kDQ" target="_blank" rel="noopener noreferrer">NASA ADS</a>
             <!-- <a class="text-link" href="https://mp.weixin.qq.com/s/s3-W_PXP5dQc60TuwONjeA" target="_blank" rel="noopener noreferrer">WeChat</a> -->
           </div>
@@ -1478,37 +1353,18 @@
   <script type="text/javascript" id="c_n_script" src="scripts/mousemove.js" color="255,255,255" opacity="0.18" count="120" zindex="-1"></script>
   <script>
     const hero = document.querySelector(".hero");
-    const homeStage = document.getElementById("home-stage");
     const stageProps = Array.from(document.querySelectorAll(".stage-prop"));
-    const stageReadout = document.getElementById("stage-readout");
-    const stageDragger = document.querySelector(".stage-dragger");
-
-    function setPropImage(prop, active) {
-      const image = prop.querySelector("img");
-      if (!image) return;
-      image.src = active ? image.dataset.active : image.dataset.normal;
-    }
 
     function activateStageProp(prop) {
-      if (!prop || !stageReadout) return;
+      if (!prop) return;
       stageProps.forEach((item) => {
         const active = item === prop;
         item.classList.toggle("is-lit", active);
-        setPropImage(item, active);
       });
-      homeStage?.classList.toggle("is-ruined", prop.classList.contains("ruin"));
-      stageReadout.innerHTML = `<strong>${prop.dataset.title}</strong>${prop.dataset.text}`;
       if (hero) {
         hero.style.setProperty("--spot-x", prop.dataset.x || "74%");
         hero.style.setProperty("--spot-y", prop.dataset.y || "34%");
       }
-    }
-
-    function propAtPoint(x, y) {
-      return stageProps.find((prop) => {
-        const rect = prop.getBoundingClientRect();
-        return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
-      });
     }
 
     stageProps.forEach((prop) => {
@@ -1518,56 +1374,11 @@
 
     if (stageProps[0]) activateStageProp(stageProps[0]);
 
-    if (homeStage && stageDragger) {
-      let dragging = false;
-      let offsetX = 0;
-      let offsetY = 0;
-
-      stageDragger.addEventListener("pointerdown", (event) => {
-        dragging = true;
-        stageDragger.classList.add("is-dragging");
-        stageDragger.setPointerCapture(event.pointerId);
-        const dragRect = stageDragger.getBoundingClientRect();
-        offsetX = event.clientX - dragRect.left;
-        offsetY = event.clientY - dragRect.top;
-        event.preventDefault();
-      });
-
-      stageDragger.addEventListener("pointermove", (event) => {
-        if (!dragging) return;
-        const stageRect = homeStage.getBoundingClientRect();
-        const dragRect = stageDragger.getBoundingClientRect();
-        const nextLeft = Math.max(0, Math.min(stageRect.width - dragRect.width, event.clientX - stageRect.left - offsetX));
-        const nextTop = Math.max(0, Math.min(stageRect.height - dragRect.height, event.clientY - stageRect.top - offsetY));
-        stageDragger.style.left = `${nextLeft}px`;
-        stageDragger.style.top = `${nextTop}px`;
-        const target = propAtPoint(event.clientX, event.clientY);
-        if (target) activateStageProp(target);
-      });
-
-      function releaseDrag(event) {
-        if (!dragging) return;
-        dragging = false;
-        stageDragger.classList.remove("is-dragging");
-        const dragRect = stageDragger.getBoundingClientRect();
-        const centerX = dragRect.left + dragRect.width / 2;
-        const centerY = dragRect.top + dragRect.height / 2;
-        const target = propAtPoint(centerX, centerY);
-        if (target) activateStageProp(target);
-        try {
-          stageDragger.releasePointerCapture(event.pointerId);
-        } catch (error) {
-          /* Pointer may already be released by the browser. */
-        }
-      }
-
-      stageDragger.addEventListener("pointerup", releaseDrag);
-      stageDragger.addEventListener("pointercancel", releaseDrag);
-    }
-
     document.querySelectorAll("a[href]").forEach((link) => {
-      const href = link.getAttribute("href");
-      if (!href || href.startsWith("#")) return;
+      const href = link.getAttribute("href") || "";
+      if (!/^https?:\/\//i.test(href)) return;
+      const url = new URL(href, window.location.href);
+      if (url.origin === window.location.origin) return;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
     });

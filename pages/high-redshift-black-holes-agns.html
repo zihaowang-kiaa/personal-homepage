@@ -4,6 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>High-redshift Black Holes and AGNs | Zihao Wang</title>
+  <meta name="description" content="Research project page of Zihao Wang on high-redshift black holes, AGNs, Little Red Dots, halo assembly bias, black-hole envelopes, and AGN accretion histories in simulations.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://zihaowang-kiaa.github.io/personal-homepage/pages/high-redshift-black-holes-agns.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="High-redshift Black Holes and AGNs | Zihao Wang">
+  <meta property="og:description" content="Research projects on Little Red Dots, early black-hole growth, AGN accretion histories, and simulations.">
+  <meta property="og:url" content="https://zihaowang-kiaa.github.io/personal-homepage/pages/high-redshift-black-holes-agns.html">
+  <meta property="og:image" content="https://zihaowang-kiaa.github.io/personal-homepage/source%20materials/bias_cover.png">
   <link rel="icon" href="data:,">
   <style>
     :root {
@@ -776,12 +784,12 @@
     </filter>
   </svg>
 
-  <a class="back-link" href="../index.html#projects" target="_blank" rel="noopener noreferrer">Back to projects</a>
+  <a class="back-link" href="../index.html#projects">Back to projects</a>
 
   <details class="project-menu">
     <summary>Research Projects</summary>
     <div class="project-options">
-      <a class="active" href="high-redshift-black-holes-agns.html" target="_blank" rel="noopener noreferrer">
+      <a class="active" href="high-redshift-black-holes-agns.html">
         <small>01 Active</small>
         High-redshift black holes and AGNs
       </a>
@@ -980,10 +988,10 @@
 
   <script>
     document.querySelectorAll("a[href]").forEach((link) => {
-      const href = link.getAttribute("href");
-      if (!href || href.startsWith("#")) {
-        return;
-      }
+      const href = link.getAttribute("href") || "";
+      if (!/^https?:\/\//i.test(href)) return;
+      const url = new URL(href, window.location.href);
+      if (url.origin === window.location.origin) return;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
     });

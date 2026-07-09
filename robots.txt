@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zihaowang-kiaa.github.io/personal-homepage/sitemap.xml
