@@ -270,11 +270,13 @@
       z-index: 2;
       display: block;
       align-items: center;
+      pointer-events: none;
     }
 
     .hero-copy {
       position: relative;
       width: 100%;
+      pointer-events: auto;
     }
 
     .eyebrow {
@@ -406,6 +408,7 @@
       background: transparent;
       color: var(--ink);
       cursor: crosshair;
+      will-change: transform;
     }
 
     .stage-prop img {
@@ -418,10 +421,28 @@
 
     .stage-prop:hover img,
     .stage-prop:focus-visible img,
-    .stage-prop.is-lit img {
+    .stage-prop.is-lit img,
+    .stage-prop.is-cued img,
+    .stage-prop.is-transformed img {
       filter: grayscale(0%) contrast(1.14);
       transform: translateY(-8px) scale(1.04);
       opacity: 1;
+    }
+
+    .stage-prop.is-cued::after,
+    .stage-prop.is-transformed::after {
+      content: "";
+      position: absolute;
+      inset: -10px;
+      z-index: -1;
+      border: 1px solid rgba(141, 205, 227, 0.54);
+      background: radial-gradient(circle, rgba(141, 205, 227, 0.18), transparent 62%);
+      transform: rotate(-3deg);
+    }
+
+    .stage-prop.is-transformed::after {
+      border-color: rgba(216, 49, 38, 0.58);
+      background: radial-gradient(circle, rgba(216, 49, 38, 0.18), transparent 66%);
     }
 
     .stage-prop:focus-visible {
@@ -477,6 +498,43 @@
       top: calc(100% + 5px);
     }
 
+    .stage-dragger {
+      position: absolute;
+      top: clamp(92px, 15vh, 160px);
+      right: clamp(34px, 8vw, 144px);
+      z-index: 5;
+      width: clamp(86px, 8vw, 138px);
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      cursor: grab;
+      touch-action: none;
+      user-select: none;
+      filter: drop-shadow(0 24px 28px rgba(0, 0, 0, 0.55));
+    }
+
+    .stage-dragger img {
+      width: 100%;
+      pointer-events: none;
+      filter: grayscale(100%) contrast(1.16);
+      opacity: 0.92;
+      transition: filter 0.18s ease, opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    .stage-dragger:hover img,
+    .stage-dragger:focus-visible img,
+    .stage-dragger.is-dragging img {
+      filter: grayscale(0%) contrast(1.12);
+      opacity: 1;
+      transform: rotate(-2deg) scale(1.03);
+    }
+
+    .stage-dragger:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 4px;
+    }
+
     .collage .fragment {
       width: 210px;
       left: 8vw;
@@ -485,27 +543,47 @@
       opacity: 0.55;
     }
 
-    .ticker {
+    .stage-status {
       position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 3;
-      display: flex;
-      gap: 28px;
-      padding: 12px 36px;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      background: rgba(0, 0, 0, 0.76);
+      right: 36px;
+      bottom: 26px;
+      z-index: 4;
+      display: grid;
+      gap: 9px;
+      width: min(430px, calc(100% - 72px));
+      max-height: min(30svh, 178px);
+      padding: 12px 2px 12px 16px;
+      border-left: 2px solid rgba(216, 49, 38, 0.82);
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.74), rgba(0, 0, 0, 0.26));
       color: var(--muted);
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 0.96rem;
-      white-space: nowrap;
-      overflow: hidden;
+      font-size: 0.92rem;
+      line-height: 1.35;
+      overflow-y: auto;
+      overscroll-behavior: contain;
     }
 
-    .ticker span {
+    .stage-status::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .stage-status::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    .stage-status div {
+      padding-right: 10px;
+    }
+
+    .stage-status > div > span:first-child {
       color: var(--red);
+      display: block;
+      font-family: Inter, Helvetica, Arial, sans-serif;
+      font-size: 0.68rem;
+      font-style: normal;
+      font-weight: 900;
+      letter-spacing: 0;
+      text-transform: uppercase;
     }
 
     section {
@@ -945,6 +1023,7 @@
       .hero {
         min-height: 860px;
         padding: 108px 20px 78px;
+        align-items: start;
       }
 
       .hero-inner {
@@ -953,11 +1032,51 @@
       }
 
       h1 {
-        font-size: 3.75rem;
+        font-size: 3.35rem;
       }
 
       .lead {
+        width: min(350px, 100%);
         font-size: 1.02rem;
+        line-height: 1.5;
+      }
+
+      .stage-prop.house {
+        left: 18px;
+        bottom: 184px;
+        width: 116px;
+      }
+
+      .stage-prop.door {
+        left: 50%;
+        top: 58%;
+        width: 92px;
+      }
+
+      .stage-prop.ruin {
+        right: -76px;
+        bottom: 170px;
+        width: 278px;
+      }
+
+      .stage-prop.cv {
+        right: 26px;
+        top: 50%;
+        width: 94px;
+      }
+
+      .stage-dragger {
+        top: 61%;
+        right: 42%;
+        width: 84px;
+      }
+
+      .stage-status {
+        left: 20px;
+        right: 20px;
+        bottom: 52px;
+        width: auto;
+        max-height: 104px;
       }
 
       .collage .eye {
@@ -1027,10 +1146,6 @@
         font-size: 2rem;
       }
 
-      .ticker {
-        padding-left: 20px;
-        padding-right: 20px;
-      }
     }
   </style>
 </head>
@@ -1077,22 +1192,25 @@
       <div class="home-stage" id="home-stage" aria-label="Interactive homepage stage">
         <video class="stage-video" src="source materials/vid.mp4" loop autoplay muted playsinline aria-hidden="true"></video>
         <img class="stage-ground" src="source materials/wide.png" alt="" aria-hidden="true">
-        <a class="stage-prop house" href="#about-me" data-x="28%" data-y="70%" aria-label="Open front room">
-          <img src="source materials/judge_house.png" alt="">
+        <a class="stage-prop house" href="#about-me" data-x="28%" data-y="70%" data-alt-src="source materials/judge_house_after.png" data-drop-label="Front room opened" data-room-note="Front room: introduction, portrait, and the first few coordinates." aria-label="Open front room">
+          <img src="source materials/judge_house.png" alt="" draggable="false">
           <span class="stage-label">Front room</span>
         </a>
-        <a class="stage-prop door" href="#projects" data-x="54%" data-y="24%" aria-label="Open research projects">
-          <img src="source materials/door_close.png" alt="">
+        <a class="stage-prop door" href="#projects" data-x="54%" data-y="24%" data-alt-src="source materials/door_open.png" data-drop-label="Working rooms open" data-room-note="Working rooms: research projects on high-redshift black holes, AGNs, galaxies, and simulations." aria-label="Open research projects">
+          <img src="source materials/door_close.png" alt="" draggable="false">
           <span class="stage-label">Research projects</span>
         </a>
-        <a class="stage-prop ruin" href="pages/posts.html" data-x="78%" data-y="68%" aria-label="Open posts page">
-          <img src="source materials/ruin.png" alt="">
+        <a class="stage-prop ruin" href="pages/posts.html" data-x="78%" data-y="68%" data-alt-src="source materials/judge_ruin_after.png" data-drop-label="Garden awake" data-room-note="Garden: cinema fragments, music notes, essays, photographs, and side collections." aria-label="Open posts page">
+          <img src="source materials/ruin.png" alt="" draggable="false">
           <span class="stage-label">Posts</span>
         </a>
-        <a class="stage-prop cv" href="Zihao_2026.pdf" data-x="70%" data-y="28%" aria-label="Open CV">
-          <img src="source materials/bauhaus2.jpeg" alt="">
+        <a class="stage-prop cv" href="Zihao_2026.pdf" data-x="70%" data-y="28%" data-alt-src="source materials/bauhaus3.jpeg" data-drop-label="CV selected" data-room-note="CV: a compact route to education, publications, talks, and experience." aria-label="Open CV">
+          <img src="source materials/bauhaus2.jpeg" alt="" draggable="false">
           <span class="stage-label">CV</span>
         </a>
+        <button class="stage-dragger" type="button" aria-label="Drag the figure to a room icon">
+          <img src="source materials/talkwoman_drag.png" alt="" draggable="false">
+        </button>
       </div>
 
       <div class="hero-inner">
@@ -1102,16 +1220,18 @@
           <p class="lead">
             Welcome in. I am Zihao (Matthew) Wang, a Ph.D. student in astronomy at
             <a href="https://astro.pku.edu.cn/" target="_blank" rel="noopener noreferrer">Peking University</a>,
+            affiliated with KIAA,
             supervised by <a href="https://inayoshi0328.wixsite.com/kohei-inayoshi" target="_blank" rel="noopener noreferrer">Prof. Kohei Inayoshi</a>.
             I study how the first stars, galaxies, and supermassive black holes formed in the JWST era.
           </p>
         </div>
       </div>
 
-      <div class="ticker" aria-hidden="true">
+      <div class="stage-status" aria-label="Homepage room status">
         <div><span>House map</span> front room, working rooms, reading table, garden, mailbox</div>
         <div><span>Current focus</span> high-redshift AGNs and galaxies, from Little Red Dots to AGN accretion histories</div>
         <div><span>Methods</span> numerical simulation, analytical model, machine learning</div>
+        <div><span>Drag state</span> <span id="stage-drag-status">drag me anywhere</span></div>
       </div>
     </section>
 
@@ -1129,7 +1249,7 @@
           <div class="bio-copy">
             <p>
               I'm Zihao (Matthew) Wang (pronoun: he/they), a Ph.D. student at the Department of
-              Astronomy, School of Physics & Kavli Institute for Astronomy and Astrophysics,
+              Astronomy, School of Physics & Kavli Institute for Astronomy and Astrophysics (KIAA),
               <a href="https://astro.pku.edu.cn/" target="_blank" rel="noopener noreferrer">Peking University</a>, supervised by
               <a href="https://inayoshi0328.wixsite.com/kohei-inayoshi" target="_blank" rel="noopener noreferrer">Prof. Kohei Inayoshi</a>.
             </p>
@@ -1353,7 +1473,12 @@
   <script type="text/javascript" id="c_n_script" src="scripts/mousemove.js" color="255,255,255" opacity="0.18" count="120" zindex="-1"></script>
   <script>
     const hero = document.querySelector(".hero");
+    const stage = document.getElementById("home-stage");
+    const stageDragger = document.querySelector(".stage-dragger");
+    const stageDragStatus = document.getElementById("stage-drag-status");
     const stageProps = Array.from(document.querySelectorAll(".stage-prop"));
+    let activeDropProp = null;
+    let dragState = null;
 
     function activateStageProp(prop) {
       if (!prop) return;
@@ -1367,10 +1492,109 @@
       }
     }
 
+    function setDragStatus(text) {
+      if (stageDragStatus) {
+        stageDragStatus.textContent = text;
+      }
+    }
+
+    function cueDropProp(prop) {
+      if (activeDropProp === prop) return;
+      stageProps.forEach((item) => item.classList.toggle("is-cued", item === prop));
+      activeDropProp = prop;
+      if (prop) {
+        activateStageProp(prop);
+        setDragStatus(prop.dataset.roomNote || prop.dataset.dropLabel || "room selected");
+      } else {
+        setDragStatus("drag me anywhere");
+      }
+    }
+
+    function propAtPoint(clientX, clientY) {
+      return stageProps.find((prop) => {
+        const rect = prop.getBoundingClientRect();
+        return clientX >= rect.left && clientX <= rect.right && clientY >= rect.top && clientY <= rect.bottom;
+      }) || null;
+    }
+
+    function transformStageProp(prop) {
+      if (!prop) return;
+      const img = prop.querySelector("img");
+      const label = prop.querySelector(".stage-label");
+      if (img && prop.dataset.altSrc) {
+        img.src = prop.dataset.altSrc;
+      }
+      if (label && prop.dataset.dropLabel) {
+        label.textContent = prop.dataset.dropLabel;
+      }
+      prop.classList.add("is-transformed");
+      activateStageProp(prop);
+      setDragStatus(prop.dataset.roomNote || prop.dataset.dropLabel || "room selected");
+    }
+
+    function moveDragger(event) {
+      if (!dragState || !stage || !stageDragger) return;
+      const stageRect = stage.getBoundingClientRect();
+      const dragRect = stageDragger.getBoundingClientRect();
+      const maxLeft = stageRect.width - dragRect.width - 8;
+      const maxTop = stageRect.height - dragRect.height - 8;
+      const left = Math.min(Math.max(event.clientX - stageRect.left - dragState.offsetX, 8), maxLeft);
+      const top = Math.min(Math.max(event.clientY - stageRect.top - dragState.offsetY, 8), maxTop);
+      stageDragger.style.left = `${left}px`;
+      stageDragger.style.top = `${top}px`;
+      stageDragger.style.right = "auto";
+      stageDragger.style.bottom = "auto";
+
+      const centerX = stageRect.left + left + dragRect.width / 2;
+      const centerY = stageRect.top + top + dragRect.height / 2;
+      cueDropProp(propAtPoint(centerX, centerY));
+    }
+
+    function stopDragging(event) {
+      if (!dragState || !stageDragger) return;
+      if (activeDropProp) {
+        transformStageProp(activeDropProp);
+      }
+      stageDragger.classList.remove("is-dragging");
+      stageDragger.releasePointerCapture?.(dragState.pointerId);
+      stageDragger.removeEventListener("pointermove", moveDragger);
+      stageDragger.removeEventListener("pointerup", stopDragging);
+      stageDragger.removeEventListener("pointercancel", stopDragging);
+      stageProps.forEach((item) => item.classList.remove("is-cued"));
+      dragState = null;
+    }
+
+    function startDragging(event) {
+      if (!stage || !stageDragger) return;
+      if (event.button !== undefined && event.button !== 0) return;
+      event.preventDefault();
+      const stageRect = stage.getBoundingClientRect();
+      const dragRect = stageDragger.getBoundingClientRect();
+      dragState = {
+        pointerId: event.pointerId,
+        offsetX: event.clientX - dragRect.left,
+        offsetY: event.clientY - dragRect.top
+      };
+      stageDragger.style.left = `${dragRect.left - stageRect.left}px`;
+      stageDragger.style.top = `${dragRect.top - stageRect.top}px`;
+      stageDragger.style.right = "auto";
+      stageDragger.style.bottom = "auto";
+      stageDragger.classList.add("is-dragging");
+      stageDragger.setPointerCapture?.(event.pointerId);
+      stageDragger.addEventListener("pointermove", moveDragger);
+      stageDragger.addEventListener("pointerup", stopDragging);
+      stageDragger.addEventListener("pointercancel", stopDragging);
+      moveDragger(event);
+    }
+
     stageProps.forEach((prop) => {
       prop.addEventListener("mouseenter", () => activateStageProp(prop));
       prop.addEventListener("focus", () => activateStageProp(prop));
     });
+
+    if (stageDragger) {
+      stageDragger.addEventListener("pointerdown", startDragging);
+    }
 
     if (stageProps[0]) activateStageProp(stageProps[0]);
 
