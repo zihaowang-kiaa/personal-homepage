@@ -1524,6 +1524,12 @@
       setDragStatus(prop.dataset.roomNote || prop.dataset.dropLabel || "room selected", true);
     }
 
+    function resetRoomIntro() {
+      if (!dragState) {
+        showRoomIntro(null);
+      }
+    }
+
     function cueDropProp(prop) {
       if (activeDropProp === prop) return;
       stageProps.forEach((item) => item.classList.toggle("is-cued", item === prop));
@@ -1578,8 +1584,9 @@
 
     function stopDragging(event) {
       if (!dragState || !stageDragger) return;
-      if (activeDropProp) {
-        transformStageProp(activeDropProp);
+      const droppedProp = activeDropProp;
+      if (droppedProp) {
+        transformStageProp(droppedProp);
       }
       stageDragger.classList.remove("is-dragging");
       stageDragger.releasePointerCapture?.(dragState.pointerId);
@@ -1587,7 +1594,11 @@
       stageDragger.removeEventListener("pointerup", stopDragging);
       stageDragger.removeEventListener("pointercancel", stopDragging);
       stageProps.forEach((item) => item.classList.remove("is-cued"));
+      activeDropProp = null;
       dragState = null;
+      if (!droppedProp) {
+        showRoomIntro(null);
+      }
     }
 
     function startDragging(event) {
@@ -1622,6 +1633,8 @@
         activateStageProp(prop);
         showRoomIntro(prop);
       });
+      prop.addEventListener("mouseleave", resetRoomIntro);
+      prop.addEventListener("blur", resetRoomIntro);
     });
 
     if (stageDragger) {
