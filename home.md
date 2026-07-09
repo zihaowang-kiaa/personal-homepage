@@ -1,98 +1,60 @@
 ---
-title: Welcome to Zihao's homepage...
+title: Zihao Wang homepage
 ---
 
-**You  might copy something from the following context:**
+# Homepage Content
 
-I'm Zihao (Matthew) Wang (pronoun: he/they). I'm a 1st-year Ph.D. student at the [Department of Astronomy, School of Physics, Peking University](https://astro.pku.edu.cn/), supervised by [Prof. Kohei Inayoshi](https://inayoshi0328.wixsite.com/kohei-inayoshi). Previously, I was a visiting student at MIT. Before moving to PKU, I earned a Bachelor's degree from the [School of Astronomy & Space Science, Nanjing University](https://astronomy.nju.edu.cn/EN/index.html), which provides the most prestigious astronomical program in China. 
+The homepage is designed as the front room of a small house: clear academic navigation on top, with a warmer room-like structure underneath.
 
-I study the formation of the first stars, galaxies, and supermassive black holes, and their evolution in the era of JWST, combining approaches such as numerical simulations and machine learning.
+## Navigation
 
+1. About me
+2. Research Projects
+3. Publications
+4. Posts & Photos
+5. CV
+6. Contact
 
+## Hero
 
-Current focus: formation and evolution of high-redshift AGNs/galaxies, from Little Red Dots to AGN accretion histories in simulations
+Zihao Wang
 
-Methods: numerical simulation, analytical model, machine learning
+Welcome in. I am Zihao (Matthew) Wang, a Ph.D. student in astronomy at Peking University, supervised by Prof. Kohei Inayoshi. I study how the first stars, galaxies, and supermassive black holes formed in the JWST era.
 
+## About Me
 
+I'm Zihao (Matthew) Wang (pronoun: he/they), a Ph.D. student at the Department of Astronomy, School of Physics & Kavli Institute for Astronomy and Astrophysics, Peking University, supervised by Prof. Kohei Inayoshi.
 
+Previously, I was a visiting student at MIT. Before moving to PKU, I earned my Bachelor's degree from the School of Astronomy & Space Science, Nanjing University.
 
-What can you find on this website? A collection of **projects** I’ve worked on, **my CV**, and some astronomy-related study **notes and resources**... Though the site is mostly for academic use, I'm also a **photographer and moviegoer** such that you’ll also find the occasional blog post on **cinema**, **music reviews**, or **personal essays** —written in either English or Chinese- and **photographs**. Feel free to reach out if any of these resonate with you!
+I study the formation of the first stars, galaxies, and supermassive black holes, and how their early histories become visible in the era of JWST.
 
+My current focus is the formation and evolution of high-redshift AGNs and galaxies. In the black-hole and AGN direction, I work through a growing set of linked questions: the life of Little Red Dots, black-hole envelopes and nuclear transitions, and AGN accretion histories in radiation-hydrodynamics simulations. I am interested in why the first luminous structures appeared so early, how black holes and galaxies grew together, and how compact JWST sources and AGN environments can be used as physical diagnostics.
 
+I combine numerical simulations, analytical models, and machine learning. This site is arranged like a small house: the front room introduces me, the working rooms hold research projects, the reading table keeps selected papers, and the garden opens into cinema, music, essays, photographs, and notes.
 
-### Key buttons (you might change the names to make them cooler)
+## Research Projects
 
-(1) About me
+### High-redshift black holes and AGNs
 
-(2) Projects
+Little Red Dots, black-hole envelopes, and accretion histories in simulations as a growing research program.
 
-(3) Selected publications
+### High-redshift galaxies and star formation
 
-(4) Selected Posts
+Accelerated and bursty birth histories of the first stars and galaxies, shaped by feedback and compact gas.
 
-(5) Contacts
+### Artificial Intelligence for astronomy
 
+Machine-learning routes through deep-field surveys, high-dimensional SEDs, and galaxy parameter spaces.
 
+## Selected Posts
 
-**Important links:**
+Cinema, music, essays, astronomy notes, and photography live on the posts page. The homepage keeps a compact preview with Jean-Luc Godard, Ingmar Bergman, and NJU Astro Notes.
 
-ORCID: https://orcid.org/my-orcid?orcid=0009-0007-4590-6550
+## Links
 
-NASA ADS: https://ui.adsabs.harvard.edu/user/libraries/KrWPK55_RIi-0et1K3-kDQ
-
-Reach me: zihaowang25@stu.pku.edu.cn / wangz314@mit.edu
-
-CV: Zihao_2023(Eng).pdf
-
-
-
-
-
-***
-
-### About me (you might change the phrasing to make them more romantic, e.g., Blueprint)
-
-....
-
-TBD. I want to show why I study astrophysics and why these following projects.
-
-
-
-***
-
-### Projects (you might change the phrasing to make them more romantic)
-
-Projects, studies, and experiments.
-
-- High-redshift black holes and AGNs: two parallel programs - the life of Little Red Dots, and AGN accretion histories in radiation-hydrodynamics simulations
-- High-redshift galaxies and star formation: accelerated and bursty birth of the first stars and galaxies
-- Artificial Intelligence for astronomy: reconstruct the Universe from deep-field surveys with machine learning
-
-Please 模板占位
-
-***
-
-### Publications 
-
-Selected papers.
-
-
-
----
-
-### Posts
-
-Cinema fragments and essays.
-
-	Jean-Luc Godard: https://mp.weixin.qq.com/s/I6Xo-brK2xpNoHSF5OMtHA (source materials/Godard.jpg)
-	Ingmar Bergman: https://mp.weixin.qq.com/s/m4QbQFYOqTBRORcvA1hBSA (source materials/Bergman_reviews.png)
-	Astro Notes: https://box.nju.edu.cn/d/1e6a63c9716c4daaa7a5/ (source materials/button.png)
-
-
-
----
-
-### Contact
-
-See *Important links*
+- ORCID: https://orcid.org/my-orcid?orcid=0009-0007-4590-6550
+- NASA ADS: https://ui.adsabs.harvard.edu/public-libraries/KrWPK55_RIi-0et1K3-kDQ
+- Email: zihaowang25@stu.pku.edu.cn
+- Email: wangz314@mit.edu
+- CV: Zihao_2026.pdf

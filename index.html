@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Zihao | Academic Homepage</title>
+  <title>Zihao Wang | Homepage</title>
   <link rel="icon" href="data:,">
   <style>
     :root {
@@ -16,6 +16,7 @@
       --red: #d83126;
       --cyan: #8dcde3;
       --paper: rgba(14, 14, 14, 0.84);
+      --room-image: url("source materials/door_close.png");
     }
 
     * {
@@ -192,6 +193,22 @@
       overflow: hidden;
     }
 
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(
+        circle at var(--spot-x, 74%) var(--spot-y, 34%),
+        rgba(141, 205, 227, 0.18),
+        rgba(216, 49, 38, 0.08) 16rem,
+        transparent 31rem
+      );
+      opacity: 0.82;
+      transition: opacity 0.24s ease;
+    }
+
     .hero-inner,
     .section-inner {
       width: min(1120px, 100%);
@@ -202,7 +219,7 @@
       position: relative;
       z-index: 2;
       display: grid;
-      grid-template-columns: minmax(0, 620px) minmax(240px, 360px);
+      grid-template-columns: minmax(0, 620px) minmax(280px, 420px);
       align-items: center;
       justify-content: space-between;
       gap: clamp(32px, 6vw, 92px);
@@ -283,23 +300,247 @@
       opacity: 0.42;
     }
 
-    .hero-portrait {
+    .hero-side {
       justify-self: end;
-      width: clamp(240px, 26vw, 360px);
+      width: clamp(330px, 35vw, 520px);
+      display: grid;
+      gap: 14px;
+    }
+
+    .hero-portrait {
+      width: min(300px, 58%);
+      justify-self: end;
       overflow: hidden;
       border: 1px solid var(--line);
       background: rgba(0, 0, 0, 0.56);
       box-shadow:
-        -20px 22px 0 rgba(216, 49, 38, 0.16),
-        0 28px 76px rgba(0, 0, 0, 0.48);
+        -14px 16px 0 rgba(216, 49, 38, 0.16),
+        0 24px 64px rgba(0, 0, 0, 0.42);
     }
 
     .hero-portrait img {
       width: 100%;
       height: auto;
-      max-height: min(70vh, 560px);
+      max-height: min(42vh, 360px);
       object-fit: contain;
       opacity: 0.96;
+    }
+
+    .home-stage {
+      position: relative;
+      min-height: clamp(270px, 34vh, 380px);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #050505;
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.48);
+      isolation: isolate;
+    }
+
+    .home-stage::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.76), transparent 36%, rgba(0, 0, 0, 0.5)),
+        radial-gradient(circle at 68% 42%, rgba(216, 49, 38, 0.22), transparent 34%);
+    }
+
+    .stage-video {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.34;
+      filter: grayscale(100%) contrast(1.4) brightness(0.74);
+    }
+
+    .stage-ground,
+    .stage-prop,
+    .stage-dragger,
+    .stage-ruinplay {
+      position: absolute;
+      z-index: 3;
+      display: block;
+      user-select: none;
+    }
+
+    .stage-ground {
+      left: 0;
+      right: 0;
+      bottom: -10px;
+      z-index: 2;
+      width: 100%;
+      height: 30%;
+      object-fit: cover;
+      opacity: 0.88;
+      filter: grayscale(100%) contrast(1.12);
+      pointer-events: none;
+    }
+
+    .stage-prop {
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: var(--ink);
+      cursor: crosshair;
+    }
+
+    .stage-prop img {
+      width: 100%;
+      pointer-events: none;
+      filter: grayscale(100%) contrast(1.1);
+      transition: filter 0.18s ease, transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .stage-prop:hover img,
+    .stage-prop:focus-visible img,
+    .stage-prop.is-lit img {
+      filter: grayscale(0%) contrast(1.14);
+      transform: translateY(-3px);
+      opacity: 1;
+    }
+
+    .stage-prop:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 4px;
+    }
+
+    .stage-prop.house {
+      left: 4%;
+      bottom: 11%;
+      width: 36%;
+    }
+
+    .stage-prop.ruin {
+      right: -3%;
+      bottom: 14%;
+      width: 46%;
+    }
+
+    .stage-prop.paper {
+      left: 37%;
+      top: 14%;
+      width: 28%;
+      transform: rotate(-5deg);
+    }
+
+    .stage-prop.door {
+      right: 20%;
+      top: 6%;
+      width: 16%;
+      transform: rotate(4deg);
+    }
+
+    .stage-prop.mail {
+      left: 43%;
+      bottom: 15%;
+      width: 18%;
+      transform: rotate(7deg);
+    }
+
+    .stage-label {
+      position: absolute;
+      left: 50%;
+      bottom: 8px;
+      width: max-content;
+      max-width: 150px;
+      padding: 4px 7px;
+      transform: translateX(-50%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(0, 0, 0, 0.62);
+      color: var(--ink);
+      font-size: 0.68rem;
+      font-weight: 900;
+      line-height: 1.1;
+      text-transform: uppercase;
+    }
+
+    .stage-prop.paper .stage-label,
+    .stage-prop.door .stage-label {
+      bottom: auto;
+      top: calc(100% + 5px);
+    }
+
+    .stage-dragger {
+      left: 44%;
+      top: 38%;
+      z-index: 8;
+      width: clamp(54px, 7vw, 92px);
+      cursor: grab;
+      touch-action: none;
+      filter: grayscale(100%) contrast(1.14) drop-shadow(0 18px 20px rgba(0, 0, 0, 0.62));
+      transition: filter 0.18s ease, opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    .stage-dragger:hover,
+    .stage-dragger:focus-visible,
+    .stage-dragger.is-dragging {
+      filter: grayscale(0%) contrast(1.12) drop-shadow(0 20px 24px rgba(0, 0, 0, 0.68));
+      outline: none;
+    }
+
+    .stage-dragger.is-dragging {
+      cursor: grabbing;
+      opacity: 0.72;
+      transform: rotate(-4deg) scale(1.04);
+    }
+
+    .stage-dragger img {
+      width: 100%;
+      pointer-events: none;
+    }
+
+    .stage-ruinplay {
+      right: 8%;
+      bottom: 19%;
+      z-index: 4;
+      width: 34%;
+      aspect-ratio: 1;
+      display: none;
+      animation: stage-ruinplay 4.5s steps(1) infinite;
+      pointer-events: none;
+    }
+
+    .home-stage.is-ruined .stage-ruinplay {
+      display: block;
+    }
+
+    @keyframes stage-ruinplay {
+      0% { background: url("source materials/heart.png") center / contain no-repeat; }
+      16% { background: url("source materials/heart_broken.png") center / contain no-repeat; }
+      32% { background: url("source materials/face.png") center / contain no-repeat; }
+      48% { background: url("source materials/build_broken.png") center / contain no-repeat; }
+      64% { background: url("source materials/lover.png") center / contain no-repeat; }
+      80% { background: url("source materials/lover_broken.png") center / contain no-repeat; }
+      100% { background: url("source materials/heart.png") center / contain no-repeat; }
+    }
+
+    .stage-readout {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 14px;
+      z-index: 9;
+      min-height: 64px;
+      padding: 10px 12px;
+      border-left: 2px solid var(--red);
+      background: rgba(0, 0, 0, 0.7);
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.38;
+      backdrop-filter: blur(8px);
+    }
+
+    .stage-readout strong {
+      display: block;
+      margin-bottom: 2px;
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.04rem;
     }
 
     .collage .fragment {
@@ -796,9 +1037,12 @@
         top: 420px;
       }
 
+      .hero-side {
+        width: min(500px, 100%);
+        justify-self: stretch;
+      }
+
       .hero-portrait {
-        width: min(280px, 72vw);
-        justify-self: end;
         box-shadow:
           -12px 14px 0 rgba(216, 49, 38, 0.16),
           0 20px 52px rgba(0, 0, 0, 0.44);
@@ -870,8 +1114,8 @@
         font-size: 2rem;
       }
 
-      .hero-portrait {
-        width: min(230px, 70vw);
+      .hero-side {
+        width: 100%;
       }
 
       .hero-portrait img {
@@ -900,9 +1144,9 @@
 	    <div class="nav-links">
 	      <a href="#about-me">About me</a>
 	      <details class="nav-projects">
-	        <summary>Projects</summary>
+	        <summary>Research Projects</summary>
 	        <div class="nav-project-options">
-	          <a href="pages/high-redshift-black-holes-agns.html">
+	          <a href="pages/high-redshift-black-holes-agns.html" target="_blank" rel="noopener noreferrer">
 	            <small>01</small>
 	            High-redshift black holes and AGNs
 	          </a>
@@ -917,7 +1161,8 @@
 	        </div>
 	      </details>
 	      <a href="#publications">Publications</a>
-	      <a href="pages/posts.html">Posts</a>
+	      <a href="pages/posts.html" target="_blank" rel="noopener noreferrer">Posts &amp; Photos</a>
+	      <a href="Zihao_2026.pdf" target="_blank" rel="noopener noreferrer">CV</a>
 	      <a href="#contact">Contact</a>
 	    </div>
   </nav>
@@ -931,38 +1176,74 @@
 
       <div class="hero-inner">
         <div class="hero-copy">
-          <p class="eyebrow">High-Redshift Universe / AGNs </p>
-          <h1 id="home-title">Welcome to Zihao's homepage...</h1>
+          <p class="eyebrow">Front room / high-redshift universe</p>
+          <h1 id="home-title">Zihao Wang</h1>
           <p class="lead">
-            I am Zihao (Matthew) Wang, a Ph.D. student in astronomy at
-            <a href="https://astro.pku.edu.cn/" target="_blank" rel="noopener noreferrer">Peking University</a>.
-            I study the formation of the first stars, galaxies, and supermassive black holes in the JWST era.
+            Welcome in. I am Zihao (Matthew) Wang, a Ph.D. student in astronomy at
+            <a href="https://astro.pku.edu.cn/" target="_blank" rel="noopener noreferrer">Peking University</a>,
+            supervised by <a href="https://inayoshi0328.wixsite.com/kohei-inayoshi" target="_blank" rel="noopener noreferrer">Prof. Kohei Inayoshi</a>.
+            I study how the first stars, galaxies, and supermassive black holes formed in the JWST era.
           </p>
           <div class="hero-actions" aria-label="Homepage shortcuts">
-	            <a class="text-link" href="#about-me">About me</a>
-            <a class="text-link" href="#projects">Projects</a>
+            <a class="text-link" href="#about-me">About me</a>
+            <a class="text-link" href="#projects">Research projects</a>
             <a class="text-link" href="#publications">Selected publications</a>
-	            <a class="text-link" href="pages/posts.html">Selected posts</a>
-            <a class="text-link" href="#contact">Contacts</a>
+            <a class="text-link" href="pages/posts.html" target="_blank" rel="noopener noreferrer">Posts &amp; Photos</a>
+            <a class="text-link" href="Zihao_2026.pdf" target="_blank" rel="noopener noreferrer">CV</a>
+            <a class="text-link" href="#contact">Contact</a>
           </div>
         </div>
-        <div class="hero-portrait">
-          <img src="source materials/ppl.png" alt="Portrait of Zihao Wang">
-        </div>
+        <aside class="hero-side" aria-label="Interactive homepage stage">
+          <div class="hero-portrait">
+            <img src="source materials/ppl.png" alt="Portrait of Zihao Wang">
+          </div>
+          <div class="home-stage" id="home-stage">
+            <video class="stage-video" src="source materials/vid.mp4" loop autoplay muted playsinline aria-hidden="true"></video>
+            <img class="stage-ground" src="source materials/wide.png" alt="" aria-hidden="true">
+            <a class="stage-prop house is-lit" href="#about-me" data-title="About me" data-text="The front room: background, mentors, institutions, and why I work on early black holes and galaxies." data-x="72%" data-y="36%">
+              <img src="source materials/judge_house.png" data-normal="source materials/judge_house.png" data-active="source materials/judge_house_after.png" alt="">
+              <span class="stage-label">About</span>
+            </a>
+            <a class="stage-prop ruin" href="#projects" data-title="Research projects" data-text="The working rooms: Little Red Dots, AGN accretion histories, high-redshift galaxies, and AI for astronomy." data-x="68%" data-y="58%">
+              <img src="source materials/ruin.png" data-normal="source materials/ruin.png" data-active="source materials/judge_ruin_after.png" alt="">
+              <span class="stage-label">Projects</span>
+            </a>
+            <a class="stage-prop paper" href="#publications" data-title="Publications" data-text="The reading table: selected papers, author lists, first-author work, and contributing-author work." data-x="52%" data-y="68%">
+              <img src="source materials/bias_cover.png" data-normal="source materials/bias_cover.png" data-active="source materials/BHE_cover.png" alt="">
+              <span class="stage-label">Publications</span>
+            </a>
+            <a class="stage-prop door" href="pages/posts.html" target="_blank" rel="noopener noreferrer" data-title="Posts & Photos" data-text="The garden and back rooms: cinema, music, essays, photography albums, and astronomy notes." data-x="78%" data-y="78%">
+              <img src="source materials/door_close.png" data-normal="source materials/door_close.png" data-active="source materials/door_open.png" alt="">
+              <span class="stage-label">Posts</span>
+            </a>
+            <a class="stage-prop mail" href="#contact" data-title="Contact / CV" data-text="The mailbox: email, NASA ADS, CV, and academic links." data-x="62%" data-y="30%">
+              <img src="source materials/light.png" data-normal="source materials/light.png" data-active="source materials/button.png" alt="">
+              <span class="stage-label">Contact</span>
+            </a>
+            <div class="stage-ruinplay" aria-hidden="true"></div>
+            <button class="stage-dragger" type="button" aria-label="Draggable stage figure">
+              <img src="source materials/talkwoman_drag.png" alt="">
+            </button>
+            <div class="stage-readout" id="stage-readout" aria-live="polite">
+              <strong>About me</strong>
+              The front room: background, mentors, institutions, and why I work on early black holes and galaxies.
+            </div>
+          </div>
+        </aside>
       </div>
 
       <div class="ticker" aria-hidden="true">
+        <div><span>House map</span> front room, working rooms, reading table, garden, mailbox</div>
         <div><span>Current focus</span> high-redshift AGNs and galaxies, from Little Red Dots to AGN accretion histories</div>
         <div><span>Methods</span> numerical simulation, analytical model, machine learning</div>
-        <!-- <div><span>Open to</span> collaboration, talks, exchange programs</div> -->
       </div>
     </section>
 
     <section id="about-me" aria-labelledby="about-me-title">
       <div class="section-inner">
         <div class="section-head">
-          <p class="section-kicker">About me</p>
-          <h2 class="section-title" id="about-me-title">A blueprint for reading the first lights of the Universe.</h2>
+          <p class="section-kicker">Front room</p>
+          <h2 class="section-title" id="about-me-title">About me, before the workrooms.</h2>
         </div>
 
         <div class="bio-grid">
@@ -972,7 +1253,7 @@
           </div>
           <div class="bio-copy">
             <p>
-              I'm Zihao (Matthew) Wang (pronoun: he/they), a second-year Ph.D. student at the Department of
+              I'm Zihao (Matthew) Wang (pronoun: he/they), a Ph.D. student at the Department of
               Astronomy, School of Physics & Kavli Institute for Astronomy and Astrophysics,
               <a href="https://astro.pku.edu.cn/" target="_blank" rel="noopener noreferrer">Peking University</a>, supervised by
               <a href="https://inayoshi0328.wixsite.com/kohei-inayoshi" target="_blank" rel="noopener noreferrer">Prof. Kohei Inayoshi</a>.
@@ -983,20 +1264,21 @@
               <a href="https://astronomy.nju.edu.cn/EN/index.html" target="_blank" rel="noopener noreferrer">School of Astronomy &amp; Space Science, Nanjing University</a>.
             </p>
             <p class="about-lede">
-              I study the formation of the first stars, galaxies, and supermassive black holes, and their evolution in
-              the era of JWST.
+              I study the formation of the first stars, galaxies, and supermassive black holes, and how their early
+              histories become visible in the era of JWST.
             </p>
             <p>
               My current focus is the formation and evolution of high-redshift AGNs and galaxies. In the black-hole
-              and AGN direction, I work through two parallel lines: the life of Little Red Dots, and AGN accretion
-              histories in radiation-hydrodynamics simulations. I am interested in why the first luminous structures
-              appeared so early, how black holes and galaxies grew together, and how compact JWST sources and AGN
-              environments can be used as physical diagnostics.
+              and AGN direction, I work through a growing set of linked questions: the life of Little Red Dots,
+              black-hole envelopes and nuclear transitions, and AGN accretion histories in radiation-hydrodynamics
+              simulations. I am interested in why the first luminous structures appeared so early, how black holes
+              and galaxies grew together, and how compact JWST sources and AGN environments can be used as physical
+              diagnostics.
             </p>
             <p>
-              I combine numerical simulations, analytical models, and machine learning. This site collects academic
-              projects, selected publications, my CV, astronomy notes and resources, and a quieter archive of cinema,
-              music, essays, and photographs.
+              I combine numerical simulations, analytical models, and machine learning. This site is arranged like a
+              small house: the front room introduces me, the working rooms hold research projects, the reading table
+              keeps selected papers, and the garden opens into cinema, music, essays, photographs, and notes.
             </p>
             <div class="note-strip" aria-label="Research keywords">
               <span>Little Red Dots</span>
@@ -1014,17 +1296,17 @@
     <section id="projects" aria-labelledby="projects-title">
       <div class="section-inner">
         <div class="section-head">
-          <p class="section-kicker">Projects</p>
-          <h2 class="section-title" id="projects-title">Projects, studies, and experiments.</h2>
+          <p class="section-kicker">Working rooms</p>
+          <h2 class="section-title" id="projects-title">Research projects for early-Universe problems.</h2>
         </div>
 
         <div class="research-grid">
-          <a class="tile project-card" href="pages/high-redshift-black-holes-agns.html" aria-label="Open project: High-redshift black holes and AGNs">
+          <a class="tile project-card" href="pages/high-redshift-black-holes-agns.html" target="_blank" rel="noopener noreferrer" aria-label="Open project: High-redshift black holes and AGNs">
             <div class="tile-visual" aria-hidden="true"></div>
             <div class="tile-body">
               <div class="index">01</div>
               <h3>High-redshift black holes and AGNs</h3>
-              <p>Two parallel programs: the life of Little Red Dots and AGN accretion histories in simulations.</p>
+              <p>Little Red Dots, black-hole envelopes, and accretion histories in simulations as a growing research program.</p>
             </div>
           </a>
           <article class="tile">
@@ -1032,7 +1314,7 @@
             <div class="tile-body">
               <div class="index">02</div>
               <h3>High-redshift galaxies and star formation</h3>
-              <p>Accelerated and bursty birth histories of the first stars and galaxies.</p>
+              <p>Accelerated and bursty birth histories of the first stars and galaxies, shaped by feedback and compact gas.</p>
             </div>
           </article>
           <article class="tile">
@@ -1040,7 +1322,7 @@
             <div class="tile-body">
               <div class="index">03</div>
               <h3>Artificial Intelligence for astronomy</h3>
-              <p>Reconstructing the Universe from deep-field surveys with machine learning.</p>
+              <p>Machine-learning routes through deep-field surveys, high-dimensional SEDs, and galaxy parameter spaces.</p>
             </div>
           </article>
         </div>
@@ -1050,7 +1332,7 @@
     <section id="publications" aria-labelledby="publications-title">
       <div class="section-inner">
         <div class="section-head">
-          <p class="section-kicker">Publications</p>
+          <p class="section-kicker">Reading table</p>
           <h2 class="section-title" id="publications-title">Selected papers and preprints.</h2>
         </div>
 
@@ -1125,8 +1407,8 @@
     <section id="posts" aria-labelledby="posts-title">
       <div class="section-inner">
         <div class="section-head">
-          <p class="section-kicker">Selected Posts</p>
-          <h2 class="section-title" id="posts-title">Cinema fragments, notes, and a few side rooms.</h2>
+          <p class="section-kicker">Garden rooms</p>
+          <h2 class="section-title" id="posts-title">Posts, photography, notes, and side collections.</h2>
         </div>
 
         <div class="posts-grid">
@@ -1156,7 +1438,7 @@
           </article>
         </div>
         <p style="margin: 28px 0 0;">
-          <a class="text-link" href="pages/posts.html">Open all collections</a>
+          <a class="text-link" href="pages/posts.html" target="_blank" rel="noopener noreferrer">Open posts and photos</a>
         </p>
       </div>
     </section>
@@ -1164,8 +1446,8 @@
     <section id="contact" aria-labelledby="contact-title">
       <div class="section-inner">
         <div class="section-head">
-          <p class="section-kicker">Contact</p>
-          <h2 class="section-title" id="contact-title">For collaborations, talks, and exchange programs.</h2>
+          <p class="section-kicker">Mailbox</p>
+          <h2 class="section-title" id="contact-title">Contact, CV, and academic links.</h2>
         </div>
 
         <div class="contact-band">
@@ -1177,8 +1459,8 @@
           <div class="contact-links">
             <a class="text-link" href="mailto:zihaowang25@stu.pku.edu.cn" target="_blank" rel="noopener noreferrer">PKU Email</a>
             <a class="text-link" href="mailto:wangz314@mit.edu" target="_blank" rel="noopener noreferrer">MIT Email</a>
-            <a class="text-link" href="Zihao_2023(Eng).pdf" target="_blank" rel="noopener noreferrer">CV</a>
-            <a class="text-link" href="https://ui.adsabs.harvard.edu/user/libraries/KrWPK55_RIi-0et1K3-kDQ" target="_blank" rel="noopener noreferrer">NASA ADS</a>
+            <a class="text-link" href="Zihao_2026.pdf" target="_blank" rel="noopener noreferrer">CV</a>
+            <a class="text-link" href="https://ui.adsabs.harvard.edu/public-libraries/KrWPK55_RIi-0et1K3-kDQ" target="_blank" rel="noopener noreferrer">NASA ADS</a>
             <!-- <a class="text-link" href="https://mp.weixin.qq.com/s/s3-W_PXP5dQc60TuwONjeA" target="_blank" rel="noopener noreferrer">WeChat</a> -->
           </div>
         </div>
@@ -1188,13 +1470,107 @@
 
   <footer>
     <div class="footer-inner">
-      <span>Zihao's homepage</span>
+      <span>Zihao Wang / homepage</span>
       <span>Last updated <span id="year">2026</span></span>
     </div>
   </footer>
 
   <script type="text/javascript" id="c_n_script" src="scripts/mousemove.js" color="255,255,255" opacity="0.18" count="120" zindex="-1"></script>
   <script>
+    const hero = document.querySelector(".hero");
+    const homeStage = document.getElementById("home-stage");
+    const stageProps = Array.from(document.querySelectorAll(".stage-prop"));
+    const stageReadout = document.getElementById("stage-readout");
+    const stageDragger = document.querySelector(".stage-dragger");
+
+    function setPropImage(prop, active) {
+      const image = prop.querySelector("img");
+      if (!image) return;
+      image.src = active ? image.dataset.active : image.dataset.normal;
+    }
+
+    function activateStageProp(prop) {
+      if (!prop || !stageReadout) return;
+      stageProps.forEach((item) => {
+        const active = item === prop;
+        item.classList.toggle("is-lit", active);
+        setPropImage(item, active);
+      });
+      homeStage?.classList.toggle("is-ruined", prop.classList.contains("ruin"));
+      stageReadout.innerHTML = `<strong>${prop.dataset.title}</strong>${prop.dataset.text}`;
+      if (hero) {
+        hero.style.setProperty("--spot-x", prop.dataset.x || "74%");
+        hero.style.setProperty("--spot-y", prop.dataset.y || "34%");
+      }
+    }
+
+    function propAtPoint(x, y) {
+      return stageProps.find((prop) => {
+        const rect = prop.getBoundingClientRect();
+        return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+      });
+    }
+
+    stageProps.forEach((prop) => {
+      prop.addEventListener("mouseenter", () => activateStageProp(prop));
+      prop.addEventListener("focus", () => activateStageProp(prop));
+    });
+
+    if (stageProps[0]) activateStageProp(stageProps[0]);
+
+    if (homeStage && stageDragger) {
+      let dragging = false;
+      let offsetX = 0;
+      let offsetY = 0;
+
+      stageDragger.addEventListener("pointerdown", (event) => {
+        dragging = true;
+        stageDragger.classList.add("is-dragging");
+        stageDragger.setPointerCapture(event.pointerId);
+        const dragRect = stageDragger.getBoundingClientRect();
+        offsetX = event.clientX - dragRect.left;
+        offsetY = event.clientY - dragRect.top;
+        event.preventDefault();
+      });
+
+      stageDragger.addEventListener("pointermove", (event) => {
+        if (!dragging) return;
+        const stageRect = homeStage.getBoundingClientRect();
+        const dragRect = stageDragger.getBoundingClientRect();
+        const nextLeft = Math.max(0, Math.min(stageRect.width - dragRect.width, event.clientX - stageRect.left - offsetX));
+        const nextTop = Math.max(0, Math.min(stageRect.height - dragRect.height, event.clientY - stageRect.top - offsetY));
+        stageDragger.style.left = `${nextLeft}px`;
+        stageDragger.style.top = `${nextTop}px`;
+        const target = propAtPoint(event.clientX, event.clientY);
+        if (target) activateStageProp(target);
+      });
+
+      function releaseDrag(event) {
+        if (!dragging) return;
+        dragging = false;
+        stageDragger.classList.remove("is-dragging");
+        const dragRect = stageDragger.getBoundingClientRect();
+        const centerX = dragRect.left + dragRect.width / 2;
+        const centerY = dragRect.top + dragRect.height / 2;
+        const target = propAtPoint(centerX, centerY);
+        if (target) activateStageProp(target);
+        try {
+          stageDragger.releasePointerCapture(event.pointerId);
+        } catch (error) {
+          /* Pointer may already be released by the browser. */
+        }
+      }
+
+      stageDragger.addEventListener("pointerup", releaseDrag);
+      stageDragger.addEventListener("pointercancel", releaseDrag);
+    }
+
+    document.querySelectorAll("a[href]").forEach((link) => {
+      const href = link.getAttribute("href");
+      if (!href || href.startsWith("#")) return;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    });
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
