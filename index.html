@@ -561,6 +561,12 @@
       line-height: 1.35;
       overflow-y: auto;
       overscroll-behavior: contain;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .stage-status.is-focused {
+      border-left-color: rgba(141, 205, 227, 0.92);
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.82), rgba(141, 205, 227, 0.1));
     }
 
     .stage-status::-webkit-scrollbar {
@@ -1104,7 +1110,14 @@
       .portrait-stack {
         position: relative;
         top: auto;
-        min-height: 360px;
+        width: min(240px, 68vw);
+        min-height: 320px;
+        margin: 0 auto;
+      }
+
+      .portrait-stack img {
+        height: 320px;
+        min-height: 320px;
       }
 
       .research-grid,
@@ -1192,9 +1205,9 @@
       <div class="home-stage" id="home-stage" aria-label="Interactive homepage stage">
         <video class="stage-video" src="source materials/vid.mp4" loop autoplay muted playsinline aria-hidden="true"></video>
         <img class="stage-ground" src="source materials/wide.png" alt="" aria-hidden="true">
-        <a class="stage-prop house" href="#about-me" data-x="28%" data-y="70%" data-alt-src="source materials/judge_house_after.png" data-drop-label="Front room opened" data-room-note="Front room: introduction, portrait, and the first few coordinates." aria-label="Open front room">
+        <a class="stage-prop house" href="#about-me" data-x="28%" data-y="70%" data-alt-src="source materials/judge_house_after.png" data-drop-label="Home opened" data-room-note="Home: introduction, portrait, and the first few coordinates." aria-label="Open home">
           <img src="source materials/judge_house.png" alt="" draggable="false">
-          <span class="stage-label">Front room</span>
+          <span class="stage-label">Home</span>
         </a>
         <a class="stage-prop door" href="#projects" data-x="54%" data-y="24%" data-alt-src="source materials/door_open.png" data-drop-label="Working rooms open" data-room-note="Working rooms: research projects on high-redshift black holes, AGNs, galaxies, and simulations." aria-label="Open research projects">
           <img src="source materials/door_close.png" alt="" draggable="false">
@@ -1215,7 +1228,7 @@
 
       <div class="hero-inner">
         <div class="hero-copy">
-          <p class="eyebrow">Front room / high-redshift universe</p>
+          <p class="eyebrow">Home / high-redshift universe</p>
           <h1 id="home-title">Zihao Wang</h1>
           <p class="lead">
             Welcome in. I am Zihao (Matthew) Wang, a Ph.D. student in astronomy at
@@ -1228,18 +1241,18 @@
       </div>
 
       <div class="stage-status" aria-label="Homepage room status">
-        <div><span>House map</span> front room, working rooms, reading table, garden, mailbox</div>
+        <div><span>Drag state</span> <span id="stage-drag-status">drag me anywhere</span></div>
+        <div><span>House map</span> home, working rooms, reading table, garden, mailbox</div>
         <div><span>Current focus</span> high-redshift AGNs and galaxies, from Little Red Dots to AGN accretion histories</div>
         <div><span>Methods</span> numerical simulation, analytical model, machine learning</div>
-        <div><span>Drag state</span> <span id="stage-drag-status">drag me anywhere</span></div>
       </div>
     </section>
 
     <section id="about-me" aria-labelledby="about-me-title">
       <div class="section-inner">
         <div class="section-head">
-          <p class="section-kicker">Front room</p>
-          <h2 class="section-title" id="about-me-title">About me, before the workrooms.</h2>
+          <p class="section-kicker">Home</p>
+          <h2 class="section-title" id="about-me-title">About me</h2>
         </div>
 
         <div class="bio-grid">
@@ -1272,7 +1285,7 @@
             </p>
             <p>
               I combine numerical simulations, analytical models, and machine learning. This site is arranged like a
-              small house: the front room introduces me, the working rooms hold research projects, the reading table
+              small house: the home introduces me, the working rooms hold research projects, the reading table
               keeps selected papers, and the garden opens into cinema, music, essays, photographs, and notes.
             </p>
             <div class="note-strip" aria-label="Research keywords">
@@ -1475,6 +1488,7 @@
     const hero = document.querySelector(".hero");
     const stage = document.getElementById("home-stage");
     const stageDragger = document.querySelector(".stage-dragger");
+    const stageStatus = document.querySelector(".stage-status");
     const stageDragStatus = document.getElementById("stage-drag-status");
     const stageProps = Array.from(document.querySelectorAll(".stage-prop"));
     let activeDropProp = null;
@@ -1492,10 +1506,22 @@
       }
     }
 
-    function setDragStatus(text) {
+    function setDragStatus(text, focused = false) {
       if (stageDragStatus) {
         stageDragStatus.textContent = text;
       }
+      if (stageStatus) {
+        stageStatus.classList.toggle("is-focused", focused);
+        stageStatus.scrollTop = 0;
+      }
+    }
+
+    function showRoomIntro(prop) {
+      if (!prop) {
+        setDragStatus("drag me anywhere");
+        return;
+      }
+      setDragStatus(prop.dataset.roomNote || prop.dataset.dropLabel || "room selected", true);
     }
 
     function cueDropProp(prop) {
@@ -1504,9 +1530,9 @@
       activeDropProp = prop;
       if (prop) {
         activateStageProp(prop);
-        setDragStatus(prop.dataset.roomNote || prop.dataset.dropLabel || "room selected");
+        showRoomIntro(prop);
       } else {
-        setDragStatus("drag me anywhere");
+        showRoomIntro(null);
       }
     }
 
@@ -1529,7 +1555,7 @@
       }
       prop.classList.add("is-transformed");
       activateStageProp(prop);
-      setDragStatus(prop.dataset.roomNote || prop.dataset.dropLabel || "room selected");
+      showRoomIntro(prop);
     }
 
     function moveDragger(event) {
@@ -1588,8 +1614,14 @@
     }
 
     stageProps.forEach((prop) => {
-      prop.addEventListener("mouseenter", () => activateStageProp(prop));
-      prop.addEventListener("focus", () => activateStageProp(prop));
+      prop.addEventListener("mouseenter", () => {
+        activateStageProp(prop);
+        showRoomIntro(prop);
+      });
+      prop.addEventListener("focus", () => {
+        activateStageProp(prop);
+        showRoomIntro(prop);
+      });
     });
 
     if (stageDragger) {
