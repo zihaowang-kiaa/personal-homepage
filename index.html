@@ -422,13 +422,15 @@
     .stage-prop:hover img,
     .stage-prop:focus-visible img,
     .stage-prop.is-lit img,
-    .stage-prop.is-cued img {
+    .stage-prop.is-cued img,
+    .stage-prop.is-unlocked img {
       filter: grayscale(0%) contrast(1.14);
       transform: translateY(-8px) scale(1.04);
       opacity: 1;
     }
 
-    .stage-prop.is-cued::after {
+    .stage-prop.is-cued::after,
+    .stage-prop.is-unlocked::after {
       content: "";
       position: absolute;
       inset: -10px;
@@ -436,6 +438,16 @@
       border: 1px solid rgba(141, 205, 227, 0.54);
       background: radial-gradient(circle, rgba(141, 205, 227, 0.18), transparent 62%);
       transform: rotate(-3deg);
+    }
+
+    .stage-prop.is-unlocked {
+      cursor: pointer;
+      z-index: 6;
+    }
+
+    .stage-prop.is-unlocked::after {
+      border-color: rgba(216, 49, 38, 0.58);
+      background: radial-gradient(circle, rgba(216, 49, 38, 0.18), transparent 66%);
     }
 
     .stage-prop:focus-visible {
@@ -1515,7 +1527,11 @@
       setDragStatus(prop.dataset.roomNote || prop.dataset.dropLabel || "room selected", true);
     }
 
-    function resetStageProp(prop) {
+    function resetStageProp(prop, force = false) {
+      if (prop.classList.contains("is-unlocked") && !force) {
+        prop.classList.remove("is-cued", "is-lit");
+        return;
+      }
       const img = prop.querySelector("img");
       const label = prop.querySelector(".stage-label");
       if (img && prop.dataset.defaultSrc) {
@@ -1524,7 +1540,8 @@
       if (label && prop.dataset.defaultLabel) {
         label.textContent = prop.dataset.defaultLabel;
       }
-      prop.classList.remove("is-cued", "is-lit");
+      prop.classList.remove("is-cued", "is-lit", "is-unlocked");
+      prop.setAttribute("aria-disabled", "true");
     }
 
     function resetStagePreview() {
@@ -1541,12 +1558,34 @@
         }
       });
       const img = prop.querySelector("img");
-      if (img && prop.dataset.altSrc) {
+      if (img && prop.dataset.altSrc && !prop.classList.contains("is-unlocked")) {
         img.src = prop.dataset.altSrc;
       }
       prop.classList.add("is-cued");
       activeDropProp = prop;
       activateStageProp(prop);
+      showRoomIntro(prop);
+    }
+
+    function unlockStageProp(prop) {
+      stageProps.forEach((item) => {
+        if (item !== prop) {
+          resetStageProp(item);
+        }
+      });
+      const img = prop.querySelector("img");
+      const label = prop.querySelector(".stage-label");
+      if (img && prop.dataset.altSrc) {
+        img.src = prop.dataset.altSrc;
+      }
+      if (label && prop.dataset.dropLabel) {
+        label.textContent = prop.dataset.dropLabel;
+      }
+      prop.classList.remove("is-cued", "is-lit");
+      prop.classList.add("is-unlocked");
+      prop.setAttribute("aria-disabled", "false");
+      activeDropProp = null;
+      activateStageProp(null);
       showRoomIntro(prop);
     }
 
@@ -1586,13 +1625,18 @@
 
     function stopDragging(event) {
       if (!dragState || !stageDragger) return;
+      const droppedProp = activeDropProp;
       stageDragger.classList.remove("is-dragging");
       stageDragger.releasePointerCapture?.(dragState.pointerId);
       stageDragger.removeEventListener("pointermove", moveDragger);
       stageDragger.removeEventListener("pointerup", stopDragging);
       stageDragger.removeEventListener("pointercancel", stopDragging);
       dragState = null;
-      resetStagePreview();
+      if (droppedProp) {
+        unlockStageProp(droppedProp);
+      } else {
+        resetStagePreview();
+      }
     }
 
     function startDragging(event) {
@@ -1627,6 +1671,7 @@
       if (label) {
         prop.dataset.defaultLabel = label.textContent || "";
       }
+      prop.setAttribute("aria-disabled", "true");
       prop.addEventListener("mouseenter", () => {
         if (!dragState) {
           previewStageProp(prop);
@@ -1646,6 +1691,11 @@
         if (!dragState) {
           resetStagePreview();
         }
+      });
+      prop.addEventListener("click", (event) => {
+        if (prop.classList.contains("is-unlocked")) return;
+        event.preventDefault();
+        previewStageProp(prop);
       });
     });
 
