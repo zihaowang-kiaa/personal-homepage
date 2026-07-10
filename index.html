@@ -422,15 +422,13 @@
     .stage-prop:hover img,
     .stage-prop:focus-visible img,
     .stage-prop.is-lit img,
-    .stage-prop.is-cued img,
-    .stage-prop.is-transformed img {
+    .stage-prop.is-cued img {
       filter: grayscale(0%) contrast(1.14);
       transform: translateY(-8px) scale(1.04);
       opacity: 1;
     }
 
-    .stage-prop.is-cued::after,
-    .stage-prop.is-transformed::after {
+    .stage-prop.is-cued::after {
       content: "";
       position: absolute;
       inset: -10px;
@@ -438,11 +436,6 @@
       border: 1px solid rgba(141, 205, 227, 0.54);
       background: radial-gradient(circle, rgba(141, 205, 227, 0.18), transparent 62%);
       transform: rotate(-3deg);
-    }
-
-    .stage-prop.is-transformed::after {
-      border-color: rgba(216, 49, 38, 0.58);
-      background: radial-gradient(circle, rgba(216, 49, 38, 0.18), transparent 66%);
     }
 
     .stage-prop:focus-visible {
@@ -1495,12 +1488,10 @@
     let dragState = null;
 
     function activateStageProp(prop) {
-      if (!prop) return;
       stageProps.forEach((item) => {
-        const active = item === prop;
-        item.classList.toggle("is-lit", active);
+        item.classList.toggle("is-lit", Boolean(prop) && item === prop);
       });
-      if (hero) {
+      if (hero && prop) {
         hero.style.setProperty("--spot-x", prop.dataset.x || "74%");
         hero.style.setProperty("--spot-y", prop.dataset.y || "34%");
       }
@@ -1524,22 +1515,48 @@
       setDragStatus(prop.dataset.roomNote || prop.dataset.dropLabel || "room selected", true);
     }
 
-    function resetRoomIntro() {
-      if (!dragState) {
-        showRoomIntro(null);
+    function resetStageProp(prop) {
+      const img = prop.querySelector("img");
+      const label = prop.querySelector(".stage-label");
+      if (img && prop.dataset.defaultSrc) {
+        img.src = prop.dataset.defaultSrc;
       }
+      if (label && prop.dataset.defaultLabel) {
+        label.textContent = prop.dataset.defaultLabel;
+      }
+      prop.classList.remove("is-cued", "is-lit");
+    }
+
+    function resetStagePreview() {
+      stageProps.forEach(resetStageProp);
+      activeDropProp = null;
+      activateStageProp(null);
+      showRoomIntro(null);
+    }
+
+    function previewStageProp(prop) {
+      stageProps.forEach((item) => {
+        if (item !== prop) {
+          resetStageProp(item);
+        }
+      });
+      const img = prop.querySelector("img");
+      if (img && prop.dataset.altSrc) {
+        img.src = prop.dataset.altSrc;
+      }
+      prop.classList.add("is-cued");
+      activeDropProp = prop;
+      activateStageProp(prop);
+      showRoomIntro(prop);
     }
 
     function cueDropProp(prop) {
-      if (activeDropProp === prop) return;
-      stageProps.forEach((item) => item.classList.toggle("is-cued", item === prop));
-      activeDropProp = prop;
-      if (prop) {
-        activateStageProp(prop);
-        showRoomIntro(prop);
-      } else {
-        showRoomIntro(null);
+      if (!prop) {
+        resetStagePreview();
+        return;
       }
+      if (activeDropProp === prop) return;
+      previewStageProp(prop);
     }
 
     function propAtPoint(clientX, clientY) {
@@ -1547,21 +1564,6 @@
         const rect = prop.getBoundingClientRect();
         return clientX >= rect.left && clientX <= rect.right && clientY >= rect.top && clientY <= rect.bottom;
       }) || null;
-    }
-
-    function transformStageProp(prop) {
-      if (!prop) return;
-      const img = prop.querySelector("img");
-      const label = prop.querySelector(".stage-label");
-      if (img && prop.dataset.altSrc) {
-        img.src = prop.dataset.altSrc;
-      }
-      if (label && prop.dataset.dropLabel) {
-        label.textContent = prop.dataset.dropLabel;
-      }
-      prop.classList.add("is-transformed");
-      activateStageProp(prop);
-      showRoomIntro(prop);
     }
 
     function moveDragger(event) {
@@ -1584,21 +1586,13 @@
 
     function stopDragging(event) {
       if (!dragState || !stageDragger) return;
-      const droppedProp = activeDropProp;
-      if (droppedProp) {
-        transformStageProp(droppedProp);
-      }
       stageDragger.classList.remove("is-dragging");
       stageDragger.releasePointerCapture?.(dragState.pointerId);
       stageDragger.removeEventListener("pointermove", moveDragger);
       stageDragger.removeEventListener("pointerup", stopDragging);
       stageDragger.removeEventListener("pointercancel", stopDragging);
-      stageProps.forEach((item) => item.classList.remove("is-cued"));
-      activeDropProp = null;
       dragState = null;
-      if (!droppedProp) {
-        showRoomIntro(null);
-      }
+      resetStagePreview();
     }
 
     function startDragging(event) {
@@ -1625,23 +1619,39 @@
     }
 
     stageProps.forEach((prop) => {
+      const img = prop.querySelector("img");
+      const label = prop.querySelector(".stage-label");
+      if (img) {
+        prop.dataset.defaultSrc = img.getAttribute("src") || "";
+      }
+      if (label) {
+        prop.dataset.defaultLabel = label.textContent || "";
+      }
       prop.addEventListener("mouseenter", () => {
-        activateStageProp(prop);
-        showRoomIntro(prop);
+        if (!dragState) {
+          previewStageProp(prop);
+        }
       });
       prop.addEventListener("focus", () => {
-        activateStageProp(prop);
-        showRoomIntro(prop);
+        if (!dragState) {
+          previewStageProp(prop);
+        }
       });
-      prop.addEventListener("mouseleave", resetRoomIntro);
-      prop.addEventListener("blur", resetRoomIntro);
+      prop.addEventListener("mouseleave", () => {
+        if (!dragState) {
+          resetStagePreview();
+        }
+      });
+      prop.addEventListener("blur", () => {
+        if (!dragState) {
+          resetStagePreview();
+        }
+      });
     });
 
     if (stageDragger) {
       stageDragger.addEventListener("pointerdown", startDragging);
     }
-
-    if (stageProps[0]) activateStageProp(stageProps[0]);
 
     document.querySelectorAll("a[href]").forEach((link) => {
       const href = link.getAttribute("href") || "";
