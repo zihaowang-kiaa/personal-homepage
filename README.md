@@ -8,6 +8,8 @@ Live site: https://zihaowang-kiaa.github.io/personal-homepage/
 
 - `index.html` - homepage with about, research projects, publications, posts preview, CV, and contact links.
 - `pages/high-redshift-black-holes-agns.html` - project page for high-redshift black holes and AGNs.
+- `pages/high-redshift-galaxies-star-formation.html` - project page for high-redshift galaxies, THESAN-ZOOM, and star formation.
+- `pages/artificial-intelligence-astronomy.html` - project page for machine learning methods in observational astronomy.
 - `pages/posts.html` - posts, photography albums, lecture notes, and side collections.
 - `source materials/` - visual assets used by the homepage and project pages.
 - `albums/` - photography albums used by the posts page.
