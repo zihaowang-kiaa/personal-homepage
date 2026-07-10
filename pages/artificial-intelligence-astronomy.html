@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Artificial Intelligence for Astronomy | Zihao Wang</title>
-  <meta name="description" content="Research project page of Zihao Wang on machine learning for astronomy, JWST-calibrated galaxy parameter estimation, SHAPE, SOM-SED modeling, and survey-ready galaxy inference.">
+  <meta name="description" content="Research project page of Zihao Wang on machine learning for astronomy, survey-scale inference, galaxy characterization, and public data products.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://zihaowang-kiaa.github.io/personal-homepage/pages/artificial-intelligence-astronomy.html">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Artificial Intelligence for Astronomy | Zihao Wang">
-  <meta property="og:description" content="Projects on JWST-calibrated machine learning, SHAPE, galaxy parameter estimation, and large survey inference.">
+  <meta property="og:description" content="Projects on machine learning for astronomical surveys, galaxy characterization, and scalable inference.">
   <meta property="og:url" content="https://zihaowang-kiaa.github.io/personal-homepage/pages/artificial-intelligence-astronomy.html">
   <meta property="og:image" content="https://zihaowang-kiaa.github.io/personal-homepage/source%20materials/SHAPE1.png">
   <link rel="icon" href="data:,">
@@ -37,9 +37,12 @@
       min-height: 100vh;
       color: var(--ink);
       background:
+        repeating-linear-gradient(90deg, rgba(118, 185, 255, 0.11) 0 1px, transparent 1px 68px),
+        repeating-linear-gradient(0deg, rgba(132, 240, 215, 0.055) 0 1px, transparent 1px 44px),
         linear-gradient(115deg, rgba(5, 6, 8, 0.98), rgba(7, 14, 22, 0.96) 50%, rgba(13, 17, 18, 0.98)),
-        repeating-linear-gradient(0deg, rgba(118, 185, 255, 0.032) 0 1px, transparent 1px 13px),
+        repeating-linear-gradient(0deg, rgba(118, 185, 255, 0.036) 0 1px, transparent 1px 13px),
         linear-gradient(90deg, rgba(226, 59, 53, 0.08), transparent 32%, rgba(132, 240, 215, 0.09));
+      background-attachment: fixed;
       font-family: Inter, Helvetica, Arial, sans-serif;
       line-height: 1.72;
       overflow-x: hidden;
@@ -154,12 +157,27 @@
 
     .hero {
       min-height: 100svh;
-      padding: 116px 36px 108px;
+      padding: 116px 36px 96px;
       display: grid;
       align-items: center;
       border-bottom: 1px solid var(--line);
       overflow: hidden;
       position: relative;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.56;
+      background:
+        linear-gradient(90deg, rgba(5, 6, 8, 0.92), rgba(5, 6, 8, 0.28) 46%, rgba(5, 6, 8, 0.82)),
+        repeating-linear-gradient(135deg, rgba(118, 185, 255, 0.18) 0 1px, transparent 1px 54px),
+        repeating-linear-gradient(45deg, rgba(132, 240, 215, 0.11) 0 1px, transparent 1px 78px),
+        linear-gradient(180deg, transparent, rgba(226, 59, 53, 0.08));
     }
 
     .hero-inner,
@@ -251,8 +269,9 @@
       inset: 0;
       pointer-events: none;
       background:
-        linear-gradient(90deg, transparent, rgba(5, 6, 8, 0.38)),
-        radial-gradient(circle at 20% 24%, rgba(132, 240, 215, 0.14), transparent 24%);
+        linear-gradient(90deg, transparent, rgba(5, 6, 8, 0.42)),
+        repeating-linear-gradient(90deg, rgba(118, 185, 255, 0.12) 0 1px, transparent 1px 42px),
+        repeating-linear-gradient(0deg, rgba(132, 240, 215, 0.1) 0 1px, transparent 1px 34px);
     }
 
     .map-labels {
@@ -267,8 +286,8 @@
     }
 
     .map-labels span {
-      border: 1px solid var(--line);
-      background: rgba(5, 6, 8, 0.72);
+      border: 1px solid rgba(118, 185, 255, 0.28);
+      background: rgba(5, 8, 12, 0.76);
       padding: 6px 8px;
       color: var(--ink);
       font-size: 0.78rem;
@@ -276,41 +295,10 @@
       text-transform: uppercase;
     }
 
-    .hero-ticker {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 3;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      border-top: 1px solid var(--line);
-      background: rgba(5, 6, 8, 0.84);
-      backdrop-filter: blur(12px);
-    }
-
-    .hero-ticker a {
-      min-height: 88px;
-      padding: 18px 24px;
-      border-left: 1px solid var(--line);
-      color: var(--muted);
-      display: grid;
-      align-content: center;
-      gap: 3px;
-    }
-
-    .hero-ticker a:first-child { border-left: 0; }
-
-    .hero-ticker span {
-      color: var(--blue);
-      font-weight: 900;
-      text-transform: uppercase;
-    }
-
     section {
       padding: 88px 36px;
       border-top: 1px solid var(--line);
-      background: rgba(5, 6, 8, 0.8);
+      background: rgba(5, 6, 8, 0.72);
     }
 
     .section-head {
@@ -323,7 +311,7 @@
 
     .section-head p {
       margin: 0;
-      color: var(--red);
+      color: var(--blue);
       font-family: Georgia, "Times New Roman", serif;
       font-size: 1.12rem;
       font-style: italic;
@@ -338,8 +326,10 @@
       border: 1px solid var(--line);
       border-radius: 6px;
       background:
-        linear-gradient(180deg, rgba(118, 185, 255, 0.07), rgba(132, 240, 215, 0.035)),
+        repeating-linear-gradient(90deg, rgba(118, 185, 255, 0.055) 0 1px, transparent 1px 34px),
+        linear-gradient(135deg, rgba(118, 185, 255, 0.12), rgba(132, 240, 215, 0.055) 48%, rgba(226, 59, 53, 0.04)),
         var(--paper);
+      box-shadow: 0 22px 78px rgba(0, 0, 0, 0.36);
     }
 
     .work-grid {
@@ -364,7 +354,9 @@
       margin: 0;
       padding: 18px;
       border-bottom: 1px solid var(--line);
-      background: #050608;
+      background:
+        linear-gradient(135deg, rgba(118, 185, 255, 0.12), rgba(132, 240, 215, 0.04)),
+        #050608;
       overflow: hidden;
     }
 
@@ -434,19 +426,6 @@
         padding-top: 150px;
       }
 
-      .hero-ticker {
-        position: relative;
-        grid-template-columns: 1fr;
-        margin: 42px -36px -108px;
-      }
-
-      .hero-ticker a {
-        border-left: 0;
-        border-top: 1px solid var(--line);
-      }
-
-      .hero-ticker a:first-child { border-top: 0; }
-
       .work-cover {
         min-height: auto;
         border-right: 0;
@@ -478,11 +457,6 @@
       .project-menu {
         right: 18px;
         width: calc(100vw - 36px);
-      }
-
-      .hero-ticker {
-        margin-left: -20px;
-        margin-right: -20px;
       }
 
       h1 {
@@ -556,27 +530,13 @@
         </div>
       </div>
 
-      <div class="hero-ticker">
-        <a href="#works">
-          <span>Works</span>
-          Current machine-learning work
-        </a>
-        <a href="#shape-publications">
-          <span>Publications</span>
-          Papers linked from each work card
-        </a>
-        <a href="#shape-data">
-          <span>Data products</span>
-          Catalogs and public resources
-        </a>
-      </div>
     </section>
 
     <section id="works">
       <div class="section-inner">
         <div class="section-head">
           <p>Works</p>
-          <h2>Machine-learning work in observational astronomy.</h2>
+          <h2>Machine-learning methods for astronomy.</h2>
         </div>
 
         <div class="work-grid">

@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>High-redshift Galaxies and Star Formation | Zihao Wang</title>
-  <meta name="description" content="Research project page of Zihao Wang on high-redshift galaxies, star formation efficiency, giant molecular clouds, galaxy clumpiness, and cosmic star formation.">
+  <meta name="description" content="Research project page of Zihao Wang on high-redshift galaxies, Epoch of Reionization simulations, cosmic star formation, and early stellar populations.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://zihaowang-kiaa.github.io/personal-homepage/pages/high-redshift-galaxies-star-formation.html">
   <meta property="og:type" content="article">
   <meta property="og:title" content="High-redshift Galaxies and Star Formation | Zihao Wang">
-  <meta property="og:description" content="Projects on star formation efficiency, galaxy clumpiness, and cosmic star formation at high redshift.">
+  <meta property="og:description" content="Projects on galaxy formation at the Epoch of Reionization, cosmic star formation, and early stellar populations.">
   <meta property="og:url" content="https://zihaowang-kiaa.github.io/personal-homepage/pages/high-redshift-galaxies-star-formation.html">
   <meta property="og:image" content="https://zihaowang-kiaa.github.io/personal-homepage/source%20materials/SFE.png">
   <link rel="icon" href="data:,">
@@ -37,8 +37,11 @@
       min-height: 100vh;
       color: var(--ink);
       background:
+        repeating-linear-gradient(105deg, rgba(141, 215, 181, 0.12) 0 1px, transparent 1px 54px),
+        repeating-linear-gradient(15deg, rgba(215, 184, 90, 0.07) 0 1px, transparent 1px 72px),
         linear-gradient(120deg, rgba(3, 5, 4, 0.98), rgba(5, 12, 12, 0.95) 45%, rgba(11, 13, 8, 0.98)),
         linear-gradient(90deg, rgba(141, 215, 181, 0.11), transparent 34%, rgba(142, 183, 232, 0.08) 65%, rgba(215, 184, 90, 0.08));
+      background-attachment: fixed;
       font-family: Inter, Helvetica, Arial, sans-serif;
       line-height: 1.72;
       overflow-x: hidden;
@@ -166,6 +169,20 @@
       border-bottom: 1px solid var(--line);
       position: relative;
       overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.46;
+      background:
+        linear-gradient(90deg, rgba(3, 5, 4, 0.9), rgba(3, 5, 4, 0.28) 48%, rgba(3, 5, 4, 0.82)),
+        repeating-linear-gradient(90deg, rgba(141, 215, 181, 0.18) 0 1px, transparent 1px 66px),
+        repeating-linear-gradient(0deg, rgba(215, 184, 90, 0.12) 0 1px, transparent 1px 84px);
     }
 
     .hero::after {
@@ -175,6 +192,7 @@
       height: 34%;
       background: linear-gradient(0deg, rgba(3, 5, 4, 0.98), transparent);
       pointer-events: none;
+      z-index: 1;
     }
 
     .hero-inner,
@@ -307,7 +325,7 @@
     section {
       padding: 88px 36px;
       border-top: 1px solid var(--line);
-      background: rgba(3, 5, 4, 0.78);
+      background: rgba(3, 5, 4, 0.72);
     }
 
     .section-head {
@@ -625,7 +643,7 @@
       <div class="section-inner">
         <div class="section-head">
           <p>Research directions</p>
-          <h2>Two parallel programs for high-redshift galaxy formation.</h2>
+          <h2>Early galaxies from resolved simulations to cosmic star formation.</h2>
         </div>
 
         <div class="route-grid">
@@ -737,7 +755,7 @@
       <div class="section-inner">
         <div class="section-head">
           <p>Cosmic star formation</p>
-          <h2>IMF response to radiative environments and the evolution of LRDs.</h2>
+          <h2>Stellar populations and radiative environments at high redshift.</h2>
         </div>
 
         <div class="route-card">
