@@ -1,0 +1,88 @@
+/* Scroll depth only: keep the site's palette and original artwork filters. */
+.parallax-control {
+  position: absolute;
+  top: 112px;
+  right: 6vw;
+  z-index: 7;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 0;
+  min-height: 44px;
+  color: var(--muted);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  font: 10px/1.5 var(--mono);
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+.parallax-control[hidden] {
+  display: none;
+}
+.parallax-control span {
+  color: var(--cyan);
+}
+.parallax-control:hover {
+  color: var(--ink);
+}
+
+@media (min-width: 761px) and (prefers-reduced-motion: no-preference) {
+  /* Individual translate preserves the door/CV rotations and image hover transforms.
+     The stage container and draggable figure never receive a transform. */
+  .parallax-ready .parallax-layer {
+    translate: 0 var(--parallax-y, 0px);
+  }
+  .parallax-ready [data-parallax-active] .parallax-layer {
+    will-change: translate;
+  }
+  .parallax-ready .stage-video {
+    top: -128px;
+    height: calc(100% + 256px);
+    pointer-events: none;
+  }
+
+  /* Move the image inside its stationary frame, never its text or link hitbox.
+     32px overscan covers the capped 28px travel at either edge. */
+  .parallax-ready [data-parallax-scene="image"] {
+    position: relative;
+    overflow: hidden;
+    background-size: 0 0;
+    background-repeat: no-repeat;
+  }
+  .parallax-ready [data-parallax-scene="image"]::before {
+    content: "";
+    position: absolute;
+    inset: -32px 0;
+    background-image: inherit;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    translate: 0 var(--parallax-y, 0px);
+    pointer-events: none;
+  }
+  .parallax-ready [data-parallax-scene="image"][data-parallax-active]::before {
+    will-change: translate;
+  }
+}
+
+@media (max-width: 760px), (prefers-reduced-motion: reduce), print {
+  .parallax-control {
+    display: none;
+  }
+}
+@media print {
+  .parallax-ready .parallax-layer {
+    translate: none;
+  }
+  .parallax-ready .stage-video {
+    top: 0;
+    height: 100%;
+  }
+  .parallax-ready [data-parallax-scene="image"] {
+    background-size: cover;
+  }
+  .parallax-ready [data-parallax-scene="image"]::before {
+    display: none;
+  }
+}

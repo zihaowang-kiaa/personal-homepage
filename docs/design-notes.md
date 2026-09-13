@@ -25,6 +25,14 @@ Use atmosphere to support navigation rather than conceal it. Drag interactions o
 
 `assets/js/background-lines.js` is the unmodified original MIT-licensed canvas-nest v1.0.1 script, restored from the earliest local `mousemove.js`. Keep its original white color, opacity 0.18, 120 particles, and z-index −1. The original 6000/20000 squared-distance thresholds, outer-ring-only attraction, and thin strokes are intentional; do not replace them with a denser network or a stronger halo. Load this script synchronously as the final script element, since it reads configuration from the last script tag. The opaque hero scenery naturally covers this background layer, as it did originally. This interaction is part of the user's preferred design and should not be redesigned during visual simplification.
 
+### Homepage scroll depth
+
+`assets/css/home-parallax.css` and `assets/js/home-parallax.js` progressively enhance only the homepage. The hero's background, ground, and four props have separate scroll speeds; project and garden images move inside stationary, clipped frames. Text, navigation, the sticky original-color portrait, the stage container, and the draggable figure are not transformed. Individual CSS `translate` preserves the door/CV rotations and existing hover transforms; moving links retain their actual hitboxes for the stage's rectangle-based drop detection.
+
+Motion is enabled only above 760px and with `prefers-reduced-motion: no-preference`. The hero's “Scroll depth” button can also disable it. Changing the media preference or viewport resets all offsets; unsupported browsers and JavaScript-disabled pages retain the original static layout. A passive scroll listener schedules at most one animation frame per event burst, using stable scene bounds and skipping offscreen writes, with no idle animation loop or scroll interception. Image frames have 32px overscan for a maximum 28px translation; the hero background has 128px overscan for a maximum 120px translation.
+
+Keep the new script before the original background-lines script, which must remain the final script tag. Never replace the original global mouse/resize handlers; the new controller uses `addEventListener`. The stylesheet adds no color grading or new palette. Run `node --test tools/test_home_parallax.cjs` for deterministic motion/preference tests; verify actual desktop scrolling, drag/drop after scrolling, image-frame coverage, mobile navigation, and the no-JavaScript fallback when changing this effect.
+
 ## Assets and preservation
 
 Published images live under `assets/images/`, organized as `portrait/`, `collage/`, `research/`, `journal/`, and `albums/`. Published video clips live under `assets/videos/`. The previous `source materials/` paths are superseded by the entries in `docs/asset-map.json`.

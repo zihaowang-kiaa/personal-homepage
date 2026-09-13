@@ -71,6 +71,7 @@
     </script>
     <link rel="stylesheet" href="assets/css/site.css" />
     <link rel="stylesheet" href="assets/css/home.css?v=20260906-original-lines" />
+    <link rel="stylesheet" href="assets/css/home-parallax.css?v=20260913" />
   </head>
   <body>
     <a class="skip-link" href="#about-me">Skip to content</a>
@@ -112,14 +113,20 @@
     </nav>
 
     <main id="top">
-      <section class="hero" aria-labelledby="home-title">
+      <section
+        class="hero"
+        aria-labelledby="home-title"
+        data-parallax-scene="hero"
+      >
         <div
           class="home-stage"
           id="home-stage"
           aria-label="Interactive homepage stage"
         >
           <img
-            class="stage-video"
+            class="stage-video parallax-layer"
+            data-parallax-depth="0.24"
+            data-parallax-limit="120"
             src="assets/images/collage/bgfirst.webp"
             alt=""
             aria-hidden="true"
@@ -127,13 +134,17 @@
             fetchpriority="high"
           />
           <img
-            class="stage-ground"
+            class="stage-ground parallax-layer"
+            data-parallax-depth="-0.1"
+            data-parallax-limit="64"
             src="assets/images/collage/wide.webp"
             alt=""
             aria-hidden="true"
           />
           <a
-            class="stage-prop house"
+            class="stage-prop house parallax-layer"
+            data-parallax-depth="-0.045"
+            data-parallax-limit="32"
             href="#about-me"
             data-x="28%"
             data-y="70%"
@@ -150,7 +161,9 @@
             <span class="stage-label">Home</span>
           </a>
           <a
-            class="stage-prop door"
+            class="stage-prop door parallax-layer"
+            data-parallax-depth="0.075"
+            data-parallax-limit="48"
             href="#projects"
             data-x="54%"
             data-y="24%"
@@ -167,7 +180,9 @@
             <span class="stage-label">Research projects</span>
           </a>
           <a
-            class="stage-prop ruin"
+            class="stage-prop ruin parallax-layer"
+            data-parallax-depth="-0.075"
+            data-parallax-limit="48"
             href="pages/posts.html"
             data-x="78%"
             data-y="68%"
@@ -184,7 +199,9 @@
             <span class="stage-label">Posts</span>
           </a>
           <a
-            class="stage-prop cv"
+            class="stage-prop cv parallax-layer"
+            data-parallax-depth="0.12"
+            data-parallax-limit="64"
             href="docs/cv/Zihao_2026.pdf"
             data-x="70%"
             data-y="28%"
@@ -251,6 +268,15 @@
             </div>
           </div>
         </div>
+        <button
+          class="parallax-control"
+          type="button"
+          aria-label="Scroll parallax"
+          aria-pressed="true"
+          hidden
+        >
+          Scroll depth <span data-parallax-state>On</span>
+        </button>
         <div class="hero-bottom">
           <span>THE FRONT ROOM</span
           ><a href="#about-me"
@@ -363,7 +389,13 @@
               href="pages/high-redshift-black-holes-agns.html"
               aria-label="Open project: High-redshift black holes and AGNs"
             >
-              <div class="tile-visual" aria-hidden="true"></div>
+              <div
+                class="tile-visual"
+                aria-hidden="true"
+                data-parallax-scene="image"
+                data-parallax-depth="0.10"
+                data-parallax-limit="28"
+              ></div>
               <div class="tile-body">
                 <div class="index">01</div>
                 <h3>High-redshift black holes and AGNs</h3>
@@ -378,7 +410,13 @@
               href="pages/high-redshift-galaxies-star-formation.html"
               aria-label="Open project: High-redshift galaxies and star formation"
             >
-              <div class="tile-visual" aria-hidden="true"></div>
+              <div
+                class="tile-visual"
+                aria-hidden="true"
+                data-parallax-scene="image"
+                data-parallax-depth="0.14"
+                data-parallax-limit="28"
+              ></div>
               <div class="tile-body">
                 <div class="index">02</div>
                 <h3>High-redshift galaxies and star formation</h3>
@@ -393,7 +431,13 @@
               href="pages/artificial-intelligence-astronomy.html"
               aria-label="Open project: Artificial Intelligence for astronomy"
             >
-              <div class="tile-visual" aria-hidden="true"></div>
+              <div
+                class="tile-visual"
+                aria-hidden="true"
+                data-parallax-scene="image"
+                data-parallax-depth="0.08"
+                data-parallax-limit="28"
+              ></div>
               <div class="tile-body">
                 <div class="index">03</div>
                 <h3>Artificial Intelligence for astronomy</h3>
@@ -633,6 +677,9 @@
             <article class="post-item has-cover">
               <div
                 class="post-cover"
+                data-parallax-scene="image"
+                data-parallax-depth="0.09"
+                data-parallax-limit="28"
                 style="
                   background-image: url(&quot;assets/images/journal/godard.webp&quot;);
                 "
@@ -654,6 +701,9 @@
             <article class="post-item has-cover">
               <div
                 class="post-cover"
+                data-parallax-scene="image"
+                data-parallax-depth="0.13"
+                data-parallax-limit="28"
                 style="
                   background-image: url(&quot;assets/images/journal/bergman-reviews.webp&quot;);
                 "
@@ -675,6 +725,9 @@
             <article class="post-item has-cover">
               <div
                 class="post-cover"
+                data-parallax-scene="image"
+                data-parallax-depth="0.10"
+                data-parallax-limit="28"
                 style="
                   background-image: url(&quot;assets/images/journal/button.webp&quot;);
                 "
@@ -753,6 +806,7 @@
 
     <script src="assets/js/site.js" defer></script>
     <script src="assets/js/home.js" defer></script>
+    <script src="assets/js/home-parallax.js?v=20260913" defer></script>
     <script type="text/javascript" id="c_n_script" src="assets/js/background-lines.js?v=original" color="255,255,255" opacity="0.18" count="120" zindex="-1"></script>
   </body>
 </html>
