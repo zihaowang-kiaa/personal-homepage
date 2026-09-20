@@ -30,7 +30,7 @@ function setDragStatus(text, focused = false) {
 
 function showRoomIntro(prop) {
   if (!prop) {
-    setDragStatus("A small house, in an expanding universe.");
+    setDragStatus("Research · Posts · CV");
     return;
   }
   setDragStatus(

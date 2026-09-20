@@ -23,7 +23,7 @@ Covers should be displayed completely and separated from text. Use contain-style
 
 
 
-**Main Project 1: The life of Little Red Dots.**
+**Main Project 1: Origin and evolution of Little Red Dots**
 
 JWST has opened an uncharted frontier of the Universe, revealing phenomena that challenge our understanding of galaxy formation and the origin of supermassive black holes. Among its most intriguing discoveries are the Little Red Dots (LRDs): compact sources characterized by blue UV emission, red optical continua, broad emission lines in some cases, and inferred black-hole-to-stellar mass ratios that exceed both local scaling relations and the predictions of current cosmological simulations. Their abrupt emergence and equally rapid disappearance over the narrow redshift interval z ~ 5-8 make their origin and subsequent evolution particularly enigmatic.
 

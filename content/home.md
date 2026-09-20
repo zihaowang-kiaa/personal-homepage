@@ -19,7 +19,7 @@ The homepage is designed as the front room of a small house: clear academic navi
 
 Zihao Wang
 
-Welcome in. I am Zihao (Matthew) Wang, a Ph.D. student in astronomy at Peking University, supervised by Prof. Kohei Inayoshi. I study how the first stars, galaxies, and supermassive black holes formed in the JWST era.
+I am Zihao (Matthew) Wang, a Ph.D. student in astronomy at Peking University, supervised by Prof. Kohei Inayoshi. I study how the first stars, galaxies, and supermassive black holes formed in the JWST era.
 
 ## About Me
 
@@ -31,9 +31,9 @@ I study the formation of the first stars, galaxies, and supermassive black holes
 
 My current focus is the formation and evolution of high-redshift AGNs and galaxies. In the black-hole and AGN direction, I work through a growing set of linked questions: the life of Little Red Dots, black-hole envelopes and nuclear transitions, and AGN accretion histories in radiation-hydrodynamics simulations. I am interested in why the first luminous structures appeared so early, how black holes and galaxies grew together, and how compact JWST sources and AGN environments can be used as physical diagnostics.
 
-I combine numerical simulations, analytical models, and machine learning. This site is arranged like a small house: the front room introduces me, the working rooms hold research projects, the reading table keeps selected papers, and the garden opens into cinema, music, essays, photographs, and notes.
+I combine numerical simulations, analytical models, and machine learning.
 
-## Research Projects
+## Open questions
 
 ### High-redshift black holes and AGNs
 
@@ -47,7 +47,7 @@ Accelerated and bursty birth histories of the first stars and galaxies, shaped b
 
 Machine-learning routes through deep-field surveys, high-dimensional SEDs, and galaxy parameter spaces.
 
-## Selected Posts
+## Beyond telescope
 
 Cinema, music, essays, astronomy notes, and photography live on the posts page. The homepage keeps a compact preview with Jean-Luc Godard, Ingmar Bergman, and NJU Astro Notes.
 

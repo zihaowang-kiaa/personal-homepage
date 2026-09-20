@@ -6,6 +6,10 @@ The homepage is the front room: an introduction, research directions, selected p
 
 Use atmosphere to support navigation rather than conceal it. Drag interactions on the homepage are an additional way to explore; visitors must retain click and keyboard routes. Implementation notes, authoring commands, and unfinished placeholders belong in documentation, never in visible page copy.
 
+## Editorial style
+
+Keep visible titles and subtitles short, direct, and informative. Use “Open questions”, “Beyond telescope”, “Publications”, and “Contact” rather than decorative phrases. Introduce research by stating what the project studies or does, not how the author's work is organized. Retain scientific meaning, publication titles, author lists, and original quotations. The house/garden concept informs the visual design; it does not need explanatory prose on the page. Album entries show their names without invented mood taglines or small-print collection filler.
+
 ## Visual direction
 
 - Near-black `#08090a`, warm ivory `#efeae2`, restrained red `#bd342c`, and muted cyan `#a6c7ce` form the shared palette.

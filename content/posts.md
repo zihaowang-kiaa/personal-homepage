@@ -1,10 +1,10 @@
 # Posts, Photos, and Notes
 
-The posts page keeps the non-project side of the site: cinema, music, occasional essays, photography albums, and lecture notes.
+Cinema, music, essays, photography, and lecture notes.
 
 ## Cinema
 
-I am a moviegoer with a keen interest in European cinema and film history, especially the French New Wave.
+I am interested in European cinema and film history, especially the French New Wave.
 
 Favorite directors include Jean-Luc Godard, Theo Angelopoulos, Andrei Tarkovsky, Denis Villeneuve, and Martin Scorsese.
 
@@ -27,8 +27,6 @@ Favorite music makers include Frank Ocean, Lauryn Hill, Kanye West, Tyler, the C
 - Untitled 01: https://mp.weixin.qq.com/s/g4pQfA47IGtuH1JtKqNDVQ
 
 ## Photography Albums
-
-Equipment: Sony ZV-E10.
 
 Album order:
 
