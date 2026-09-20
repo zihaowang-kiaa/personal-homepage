@@ -23,7 +23,7 @@ Welcome in. I am Zihao (Matthew) Wang, a Ph.D. student in astronomy at Peking Un
 
 ## About Me
 
-I'm Zihao (Matthew) Wang (pronoun: he/they), a Ph.D. student at the Department of Astronomy, School of Physics & Kavli Institute for Astronomy and Astrophysics, Peking University, supervised by Prof. Kohei Inayoshi.
+I'm Zihao (Matthew) Wang, a Ph.D. student at the Department of Astronomy, School of Physics & Kavli Institute for Astronomy and Astrophysics, Peking University, supervised by Prof. Kohei Inayoshi.
 
 Previously, I was a visiting student at MIT. Before moving to PKU, I earned my Bachelor's degree from the School of Astronomy & Space Science, Nanjing University.
 
