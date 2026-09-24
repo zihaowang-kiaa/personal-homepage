@@ -39,7 +39,7 @@ Keep the new script before the original background-lines script, which must rema
 
 ### Cosmic depth passage
 
-The full-screen passage between the homepage stage and About me uses a generated distant cosmic-web background and a separate transparent near-field gas layer. Scrolling opens a framed view into full bleed, then enlarges the background and foreground at different rates. Both images are decorative artistic material, not scientific data. The two links inside the passage lead to the corresponding research pages. The exact generation prompts and asset provenance are recorded in `docs/media/cosmic-depth.md`.
+The full-screen passage between 01 / About me and 02 / Open questions uses a generated distant cosmic-web background and a separate transparent near-field gas layer. Scrolling opens a framed view into full bleed, then enlarges the background and foreground at different rates. Both images are decorative artistic material, not scientific data. The two links inside the passage lead to the corresponding research pages. The exact generation prompts and asset provenance are recorded in `docs/media/cosmic-depth.md`.
 
 `assets/js/cosmic-depth.js` scrubs the passage from actual scroll position. It reads scene bounds, schedules one animation frame per scroll burst, and writes only transform/opacity/clip variables. The passage works on desktop and mobile. The desktop “Scroll depth” control also disables the passage; reduced-motion users and no-JavaScript visitors receive a static, fully linked panel. Keep the original background-lines script last, and preserve the portrait colors and existing room navigation.
 
