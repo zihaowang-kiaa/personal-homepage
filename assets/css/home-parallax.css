@@ -43,7 +43,7 @@
   }
 
   /* Move the image inside its stationary frame, never its text or link hitbox.
-     32px overscan covers the capped 28px travel at either edge. */
+     76px overscan covers the capped 72px travel at either edge. */
   .parallax-ready [data-parallax-scene="image"] {
     position: relative;
     overflow: hidden;
@@ -53,7 +53,7 @@
   .parallax-ready [data-parallax-scene="image"]::before {
     content: "";
     position: absolute;
-    inset: -32px 0;
+    inset: -76px 0;
     background-image: inherit;
     background-size: cover;
     background-position: center;
@@ -63,6 +63,202 @@
   }
   .parallax-ready [data-parallax-scene="image"][data-parallax-active]::before {
     will-change: translate;
+  }
+}
+
+/* A pinned, scroll-scrubbed passage: the frame opens while near and far gas
+   move at deliberately different speeds. The static state is fully usable. */
+section.cosmic-depth {
+  position: relative;
+  min-height: 100svh;
+  padding: 0;
+  border-top: 0;
+  background: #08090a;
+}
+.cosmic-depth-sticky {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+}
+.cosmic-depth-art {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #08090a;
+  clip-path: inset(var(--depth-frame-y, 0) var(--depth-frame-x, 0));
+}
+.cosmic-depth-art img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+.cosmic-depth-background {
+  object-position: center;
+  transform-origin: 77% 46%;
+  transform: translate3d(0, 0, 0) scale(var(--depth-background-scale, 1));
+}
+.cosmic-depth-foreground {
+  object-position: center;
+  transform-origin: 50% 60%;
+  transform: translate3d(0, var(--depth-foreground-y, 0), 0)
+    scale(var(--depth-foreground-scale, 1));
+  opacity: var(--depth-foreground-opacity, 1);
+}
+.cosmic-depth-sticky::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, #08090ae8 0%, #08090a88 37%, transparent 73%),
+    linear-gradient(0deg, #08090a7a, transparent 30%);
+}
+.cosmic-depth-content {
+  position: relative;
+  z-index: 2;
+  width: min(1280px, 88vw);
+  margin: auto;
+  padding: 9vh 0;
+  text-shadow: 0 2px 25px #08090a99;
+}
+.cosmic-depth-kicker {
+  margin: 0 0 24px;
+  color: var(--cyan);
+  font: 10px/1.5 var(--mono);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.cosmic-depth-content h2 {
+  max-width: 8em;
+  margin: 0;
+  font: normal clamp(82px, 10vw, 160px) / 0.89 var(--serif);
+  letter-spacing: -0.075em;
+  transform: translate3d(0, var(--depth-title-y, 0), 0);
+}
+.cosmic-depth-lead {
+  max-width: 26em;
+  margin: 28px 0 0;
+  color: var(--ink);
+  font-size: clamp(16px, 1.5vw, 21px);
+}
+.cosmic-depth-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 34px;
+  margin-top: 34px;
+}
+.cosmic-depth-links a {
+  min-height: 44px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--red);
+  color: var(--ink);
+  font-size: 12px;
+  text-shadow: 0 2px 15px #08090a;
+}
+.cosmic-depth-links a:hover,
+.cosmic-depth-links a:focus-visible {
+  color: var(--cyan);
+}
+.cosmic-depth-links span {
+  margin-left: 20px;
+}
+.cosmic-depth-track {
+  position: absolute;
+  z-index: 2;
+  bottom: 8vh;
+  left: 6vw;
+  width: min(260px, 32vw);
+  height: 1px;
+  background: #efeae258;
+}
+.cosmic-depth-track span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--cyan);
+  transform-origin: left;
+  transform: scaleX(var(--depth-progress, 1));
+}
+.cosmic-depth-live .cosmic-depth {
+  height: 280svh;
+}
+.cosmic-depth-live .cosmic-depth-sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+}
+.cosmic-depth-live .cosmic-depth-background,
+.cosmic-depth-live .cosmic-depth-foreground,
+.cosmic-depth-live .cosmic-depth-content h2 {
+  will-change: transform;
+}
+.cosmic-depth-live .cosmic-depth-links {
+  opacity: calc(0.58 + 0.42 * var(--depth-links-opacity, 0));
+  transform: translate3d(0, calc(26px * (1 - var(--depth-links-opacity, 0))), 0);
+}
+.cosmic-depth-live .cosmic-depth-links:focus-within {
+  opacity: 1;
+}
+
+@media (max-width: 760px) {
+  .cosmic-depth-live .cosmic-depth {
+    height: 220svh;
+  }
+  .cosmic-depth-background {
+    object-position: 78% center;
+  }
+  .cosmic-depth-foreground {
+    inset: auto auto -4vh -15%;
+    width: 130%;
+    height: auto;
+    object-fit: contain;
+    object-position: center bottom;
+  }
+  .cosmic-depth-sticky::after {
+    background: linear-gradient(90deg, #08090ad8, #08090a55 80%);
+  }
+  .cosmic-depth-content {
+    width: calc(100% - 48px);
+    padding-bottom: 15vh;
+  }
+  .cosmic-depth-content h2 {
+    font-size: clamp(65px, 16vw, 92px);
+  }
+  .cosmic-depth-lead {
+    max-width: 18em;
+  }
+  .cosmic-depth-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 28px;
+  }
+  .cosmic-depth-track {
+    left: 24px;
+    width: 38vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce), print {
+  .cosmic-depth-art,
+  .cosmic-depth-art img,
+  .cosmic-depth-content h2,
+  .cosmic-depth-links,
+  .cosmic-depth-track span {
+    transform: none !important;
+    clip-path: none !important;
+  }
+  .cosmic-depth-links {
+    opacity: 1 !important;
   }
 }
 
