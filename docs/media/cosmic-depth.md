@@ -1,11 +1,17 @@
 # Homepage cosmic depth artwork
 
+## Current version — October 17, 2026
+
+The homepage now uses procedural engraved contours, offset registration grids and a foreground slit in `assets/js/cosmic-depth.js`. Geometry is redrawn at device pixel ratio for each scroll position, rather than enlarging a raster plate. The canvas has an inline SVG fallback, and reduced-motion mode displays a static composition. The scene remains between About (01) and Projects (02). Red, ivory, cyan and near-black are unchanged. This is abstract decorative art, not a scientific visualization.
+
+## Superseded raster version
+
 Created 2026-09-24 with the built-in imagegen tool. No CLI/API fallback was used. Both images are original decorative artwork for the homepage scroll passage; they are not observations, simulations, or quantitative scientific figures.
 
 - Background master: `assets/images/parallax/cosmic-depth-background-v2-4k.webp`, refined from the first version with the built-in imagegen tool, then exported at 3840 × 2160 in WebP quality 94.
 - Foreground master: `assets/images/parallax/cosmic-depth-foreground-v2-4k.webp`, refined with genuine transparency, then exported at 3840 × 2160 in WebP quality 92 and alpha quality 100.
-- The first 1672 × 941 WebP versions remain alongside the new files for provenance. The homepage uses the 4K v2 masters.
-- The built-in tool's native 1672 × 941 results were enlarged with Lanczos resampling and restrained sharpening before WebP delivery. This provides enough source pixels for the scene's 1.78× background and 2.35× foreground transforms on a wide display; it does not claim new scientific information.
+- The first 1672 × 941 WebP versions and the upscaled versions remain for provenance; neither is loaded by the current homepage.
+- The built-in tool's native 1672 × 941 results were enlarged with Lanczos resampling and restrained sharpening. This increased pixel dimensions but did not add real detail and was insufficient for large zooms on high-density screens.
 
 ## Exact background prompt
 

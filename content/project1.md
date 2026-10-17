@@ -46,17 +46,19 @@ Assembly bias provides valuable insight into the formation pathways of galaxies 
 
 Ref: https://arxiv.org/abs/2603.15736
 
+Status: Accepted by MNRAS (arXiv v2, September 2026).
+
 Keywords: assembly bias; halo conditions; future JWST clustering
 
 **Work 2. Nuclear transition of LRD**
 
-**How Little Red Dots Turn Blue: Evolution of Hydrostatic Black Hole Envelopes, Transition Timescales, and Observational Diagnostics**
+**How Little Red Dots Turn Blue: Evolution of Kelvin-Helmholtz Contracting Black Hole Envelopes and Observational Diagnostics**
 
 Cover: `assets/images/research/bhe-cover.webp`
 
 Key authors: Zihao Wang, Kohei Inayoshi*
 
-Another population of compact blue broad-line AGN at similar redshifts, sometimes discussed as "Little Blue Dots" (LBD-like systems), may represent a closely related population. This immediately raises a key question: are LRDs and LBDs primarily different evolutionary stages of the same underlying black hole growth process, or are they largely coexisting manifestations produced by different viewing geometries? Put differently, does the emerging taxonomy of little dots encode time evolution, orientation, or some combination of both? This question is important because the answer determines whether the diversity of compact broad-line sources at high redshift should be interpreted mainly as a dynamical sequence or as a unification problem.
+This project studies an evolutionary connection between Little Red Dots and Little Blue Dots. As the gas supply declines, a thick black-hole envelope contracts on a Kelvin-Helmholtz timescale and gradually exposes the accretion disk. The model includes concurrent nuclear star formation and predicts observable spectral tracks connecting the two populations.
 
 In this work, we analyze the black hole and its surrounding dense envelope, which are fed by gas inflow from the host, while radiative and mechanical feedback from the accretion flow act back on the envelope structure. We construct a simple time-dependent model for the joint evolution of the black hole and its surrounding envelope:
 
@@ -64,7 +66,9 @@ In this work, we analyze the black hole and its surrounding dense envelope, whic
 2. Predicts spectral continuum signatures throughout transitional evolutionary phases.
 3. Uses the observed contrasts among LRDs, Little Blue Dots, and normal AGNs to constrain black-hole feedback prescriptions.
 
-Ref: coming soon.
+Ref: https://arxiv.org/abs/2610.20709
+
+Authors: Zihao Wang and Kohei Inayoshi. Submitted to ApJ; preprint October 2026. The contracting-envelope model predicts a red excursion followed by blueward evolution and transition times of 5–50 Myr, depending on feedback and gas retention.
 
 Keywords: BH envelope; hydrostatic model; observable predictions
 

@@ -71,7 +71,7 @@
     </script>
     <link rel="stylesheet" href="assets/css/site.css" />
     <link rel="stylesheet" href="assets/css/home.css?v=20260906-original-lines" />
-    <link rel="stylesheet" href="assets/css/home-parallax.css?v=20260924" />
+    <link rel="stylesheet" href="assets/css/home-parallax.css?v=20261017" />
   </head>
   <body>
     <a class="skip-link" href="#about-me">Skip to content</a>
@@ -371,20 +371,15 @@
       <section class="cosmic-depth" aria-labelledby="cosmic-depth-title">
         <div class="cosmic-depth-sticky">
           <div class="cosmic-depth-art" aria-hidden="true">
-            <img
-              class="cosmic-depth-background"
-              src="assets/images/parallax/cosmic-depth-background-v2-4k.webp"
-              alt=""
-              loading="lazy"
-              decoding="async"
-            />
-            <img
-              class="cosmic-depth-foreground"
-              src="assets/images/parallax/cosmic-depth-foreground-v2-4k.webp"
-              alt=""
-              loading="lazy"
-              decoding="async"
-            />
+            <svg class="depth-fallback" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <g fill="none" stroke="#bd342c" stroke-width="1">
+                <ellipse cx="1100" cy="500" rx="340" ry="420" transform="rotate(25 1100 500)"/>
+                <ellipse cx="1100" cy="500" rx="280" ry="390" transform="rotate(-25 1100 500)"/>
+                <circle cx="1100" cy="500" r="260"/><circle cx="1100" cy="500" r="270"/>
+              </g>
+              <path d="M850 0V1000 M1300 0V1000 M0 500H1600" stroke="#efeae2" opacity=".16"/>
+            </svg>
+            <canvas class="depth-field"></canvas>
           </div>
           <div class="cosmic-depth-content">
             <p class="cosmic-depth-kicker">Research</p>
@@ -492,6 +487,15 @@
             <h3 class="pub-group-title">First-author publications</h3>
             <div class="pub-list">
               <article class="publication">
+                <time datetime="2026-10">Oct 2026</time>
+                <div>
+                  <h3><a href="https://arxiv.org/abs/2610.20709" target="_blank" rel="noopener noreferrer">How Little Red Dots Turn Blue: Evolution of Kelvin-Helmholtz Contracting Black Hole Envelopes and Observational Diagnostics</a></h3>
+                  <p class="authors">Authors: <span class="me">Zihao Wang</span>, Kohei Inayoshi</p>
+                  <p class="venue">arXiv:2610.20709 · Submitted to ApJ, October 2026</p>
+                  <p>Envelope contraction connects Little Red Dots to Little Blue Dots over 5–50 Myr, with observable signatures of black-hole feedback.</p>
+                </div>
+              </article>
+              <article class="publication">
                 <time datetime="2026-08">Aug 2026</time>
                 <div>
                   <h3>
@@ -534,7 +538,7 @@
                     Haonan Zheng, Xuejian Shen, Zixiang Jia, Luis C. Ho, Kohei
                     Inayoshi, Linhua Jiang
                   </p>
-                  <p class="venue">arXiv e-prints, March 2026</p>
+                  <p class="venue">MNRAS · Accepted; preprint March 2026</p>
                   <p>
                     Large-scale environments of Little Red Dots as clues to
                     their seeding mechanisms.
@@ -838,7 +842,7 @@
     <script src="assets/js/site.js" defer></script>
     <script src="assets/js/home.js" defer></script>
     <script src="assets/js/home-parallax.js?v=20260913" defer></script>
-    <script src="assets/js/cosmic-depth.js?v=20260924" defer></script>
+    <script src="assets/js/cosmic-depth.js?v=20261017" defer></script>
     <script type="text/javascript" id="c_n_script" src="assets/js/background-lines.js?v=original" color="255,255,255" opacity="0.18" count="120" zindex="-1"></script>
   </body>
 </html>
