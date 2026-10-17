@@ -66,8 +66,8 @@
   }
 }
 
-/* A pinned optical composition. Paths are redrawn at display resolution;
-   the static SVG and reduced-motion state remain fully usable. */
+/* Layered door frames share the homepage's architectural collage vocabulary.
+   Only CSS geometry scales; photographic cutouts remain at fixed sizes. */
 section.cosmic-depth {
   position: relative;
   min-height: 100svh;
@@ -90,14 +90,26 @@ section.cosmic-depth {
   background: #08090a;
   clip-path: inset(var(--depth-frame-y, 0) var(--depth-frame-x, 0));
 }
-.depth-field, .depth-fallback {
+.passage-frame {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  left: 64%;
+  top: 50%;
+  width: 42vw;
+  height: 78vh;
+  border: 24px solid #292725;
+  border-right-color: #121313;
+  border-bottom-color: #363330;
+  box-shadow: inset 1px 0 #efeae245, 1px 0 #efeae230, 22px 22px 0 #0004;
+  transform-origin: 50% 65%;
   pointer-events: none;
 }
-.depth-drawn .depth-fallback { visibility: hidden; }
+.passage-near { transform: translate(-50%, -50%) scale(var(--door-near, 1)); }
+.passage-mid { width: 29vw; height: 60vh; border-width: 15px; border-color: #4b2623 #211817 #2e1e1c #78342d; transform: translate(-50%, -50%) scale(var(--door-mid, 1)); }
+.passage-far { width: 19vw; height: 43vh; border-width: 9px; transform: translate(-50%, -50%) scale(var(--door-far, 1)); }
+.passage-window { position: absolute; width: 19vw; height: 43vh; top: 28.5%; left: 54.5%; background: linear-gradient(155deg, #a6c7ce20, #08090a 75%); }
+.passage-floor { position: absolute; inset: 70% -40% -80%; background: repeating-linear-gradient(90deg, transparent 0 119px, #efeae211 120px 121px), repeating-linear-gradient(0deg, #171616 0 119px, #efeae211 120px 121px); transform: perspective(450px) rotateX(65deg); transform-origin: center top; }
+.passage-house { position: absolute; width: min(20vw, 300px); left: 56%; bottom: 22%; opacity: .7; transform: translateY(var(--cutout-y, 0)); }
+.passage-ruin { position: absolute; width: min(32vw, 400px); right: 8%; bottom: 4%; transform: translateY(calc(var(--cutout-y, 0px) * -0.6)); }
 .cosmic-depth-sticky::after {
   content: "";
   position: absolute;
@@ -203,6 +215,12 @@ section.cosmic-depth {
     width: calc(100% - 48px);
     padding-bottom: 15vh;
   }
+  .passage-frame { left: 73%; width: 85vw; height: 65vh; }
+  .passage-mid { width: 62vw; height: 50vh; }
+  .passage-far { width: 39vw; height: 36vh; }
+  .passage-window { left: 53.5%; top: 32%; width: 39vw; height: 36vh; }
+  .passage-house { left: 55%; width: 150px; bottom: 30%; }
+  .passage-ruin { width: 230px; right: -12%; bottom: 12%; }
   .cosmic-depth-content h2 {
     font-size: clamp(65px, 16vw, 92px);
   }

@@ -2,7 +2,7 @@
 
 ## Current version — October 17, 2026
 
-The homepage now uses procedural engraved contours, offset registration grids and a foreground slit in `assets/js/cosmic-depth.js`. Geometry is redrawn at device pixel ratio for each scroll position, rather than enlarging a raster plate. The canvas has an inline SVG fallback, and reduced-motion mode displays a static composition. The scene remains between About (01) and Projects (02). Red, ivory, cyan and near-black are unchanged. This is abstract decorative art, not a scientific visualization.
+The concentric engraved-ring experiment was rejected because it did not fit the existing architectural collage. The replacement uses three CSS door frames moving at different scroll depths, a perspective floor, and the site's existing house and ruin cutouts. Only vector-like CSS geometry scales; photographic cutouts translate at fixed sizes (house at most 300 CSS pixels from a 678-pixel source; ruin at most 400 from an 800-pixel source). This supports DPR 2 without enlarging those raster assets beyond source dimensions. Reduced-motion and no-JavaScript modes show a static room. The scene remains between About (01) and Projects (02); palette and portrait are unchanged.
 
 ## Superseded raster version
 
