@@ -68,7 +68,7 @@ In this work, we analyze the black hole and its surrounding dense envelope, whic
 
 Ref: https://arxiv.org/abs/2610.20709
 
-Authors: Zihao Wang and Kohei Inayoshi. Submitted to ApJ; preprint October 2026. The contracting-envelope model predicts a red excursion followed by blueward evolution and transition times of 5–50 Myr, depending on feedback and gas retention.
+Authors: Zihao Wang and Kohei Inayoshi. Preprint October 2026. The contracting-envelope model predicts a red excursion followed by blueward evolution and transition times of 5–50 Myr, depending on feedback and gas retention.
 
 Keywords: BH envelope; hydrostatic model; observable predictions
 
